@@ -2,9 +2,9 @@ name: Laravel
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "exender-patch-1" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "exender-patch-1" ]
 
 jobs:
   laravel-tests:
@@ -17,7 +17,7 @@ jobs:
         php-version: '8.0'
     - uses: actions/checkout@v3
     - name: Copy .env.example
-      run: php -r "file_exists('.env.example') || copy('.env.example');"
+      run: php -r "file_exists('.env.example') || copy('.env.example', '.env');"
     - name: Install Dependencies
       run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
     - name: Generate key

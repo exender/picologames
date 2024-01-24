@@ -32,4 +32,5 @@ jobs:
       env:
         DB_CONNECTION: mysql
         DB_DATABASE: database/piloco.sql
+      run: vendor/bin/phpunit
   

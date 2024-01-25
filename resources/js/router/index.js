@@ -10,6 +10,7 @@ import Admin from "../components/Admin/Admin"
 import AdminDashboard from "../components/Admin/Dashboard"
 import AdminAddMode from "../components/Admin/AddMode"
 import AdminAllModes from "../components/Admin/AllModes"
+import AdminEditMode from "../components/Admin/EditMode"
 
 import Player from "../components/Player/Player"
 import Dashboard from "../components/Player/Dashboard"
@@ -82,6 +83,11 @@ const routes = [
                 path: 'add-mode',
                 component: AdminAddMode,
                 name: 'AdminAddMode'
+            },
+            {
+                path: 'edit-mode/:id',
+                component: AdminEditMode,
+                name: 'AdminEditMode',
             },
         ]
     }

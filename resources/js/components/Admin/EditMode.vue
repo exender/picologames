@@ -29,8 +29,15 @@ export default {
 	},
 
 	methods: {
+
+		getMode: function () {
+			authenticatedFetch('GET', `/api/mode/edit/${this.$route.params.id}`)
+				.then((res) => {
+					this.form = res.data
+				})
+		},
 		submit: function () {
-			authenticatedFetch('POST', `/api/mode/add`, this.form)
+			authenticatedFetch('PUT', `/api/mode/update/${this.form.id}`, this.form)
 				.then((res) => {
 					this.status = res.status
 					setTimeout(() => {
@@ -38,6 +45,9 @@ export default {
 					}, 1000)
 				})
 		}
+	},
+	created() {
+		this.getMode()
 	},
 }
 </script>

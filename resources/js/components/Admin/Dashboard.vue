@@ -5,19 +5,19 @@
 			<tr>
 				<th>Titre</th>
 				<th>Ajouter</th>
-				<th>Modifier</th>
+				<th>Voir</th>
 			</tr>
 
 			<tr>
 				<td>Mode</td>
 				<td>
 					<router-link :to="{ name: 'AdminAddMode' }">
-						ajouter</router-link
+						Ajouter</router-link
 					>
 				</td>
 				<td>
 					<router-link :to="{ name: 'AdminAllModes' }"
-						>modifier</router-link
+						>Voir</router-link
 					>
 				</td>
 			</tr>
@@ -26,11 +26,8 @@
 </template>
 
 <script>
-import { checkAdmin } from '../../utils'
 export default {
-	created() {
-		checkAdmin()
-	},
+
 }
 </script>
 

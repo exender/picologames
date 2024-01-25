@@ -3,7 +3,11 @@
 </template>
 
 <script>
+import { checkAdmin } from '../../utils'
 export default {
+	created() {
+		checkAdmin()
+	},
 }
 </script>
 

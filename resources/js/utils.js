@@ -3,14 +3,13 @@ import router from "./router"
 
 
 export const authenticatedFetch = (method, path, data = {}) => {
-
-
     return axios({
         method: method,
+
         headers: {
+            'Authorization': `Bearer ${localStorage.token}`,
             'Content-Type': 'application/json',
             'Accept': 'application/json',
-            'Authorization': `Bearer ${localStorage.token}`
         },
         url: path,
         data: data

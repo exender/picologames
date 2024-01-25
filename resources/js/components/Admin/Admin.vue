@@ -1,5 +1,7 @@
 <template>
-	<router-view></router-view>
+	<section class="admin-container">
+		<router-view></router-view>
+	</section>
 </template>
 
 <script>

@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\Admin\ModeController;
 use App\Http\Controllers\Admin\PicoloController;
 
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -54,3 +55,7 @@ Route::group(['prefix' => 'picolo'], function () {
     Route::put('update/{id}', [PicoloController::class, 'update']);
     Route::delete('delete/{id}', [PicoloController::class, 'destroy']);
 });
+
+
+
+

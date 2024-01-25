@@ -76,4 +76,4 @@ composer install
 php artisan serve
 
 ## Lauch front-end
-yarn watch
+yarn run hot

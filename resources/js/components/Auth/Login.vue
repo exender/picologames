@@ -47,10 +47,7 @@ export default {
 	},
 	methods: {
 		loginUser: async function () {
-
-
 			await axios.get('/sanctum/csrf-cookie').then(response => {
-
 				axios.post('/api/login', this.form)
 					.then((response) => {
 						localStorage.token = response.data[2]

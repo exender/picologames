@@ -19,6 +19,7 @@ import AdminEditPiloco from "../components/Admin/EditPiloco"
 
 import Player from "../components/Player/Player"
 import Dashboard from "../components/Player/Dashboard"
+import CreateRoom from "../components/Player/CreateRoom"
 
 
 const routes = [
@@ -58,6 +59,12 @@ const routes = [
                 path: '',
                 component: Dashboard,
                 name: 'Dashboard',
+
+            },
+            {
+                path: 'create-room',
+                component: CreateRoom,
+                name: 'CreateRoom',
 
             },
         ]

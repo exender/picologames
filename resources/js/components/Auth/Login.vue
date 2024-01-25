@@ -29,6 +29,7 @@
 			</div>
 
 			<input type="submit" value="Submit" class="btn btn-primary" />
+			<router-link :to="{ name: 'Register' }">S'inscrire</router-link>
 		</form>
 	</section>
 </template>
@@ -58,10 +59,6 @@ export default {
 						this.errors = error.response.data.errors
 					})
 			})
-
-
-
-
 		}
 	}
 }

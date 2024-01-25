@@ -18,12 +18,12 @@ export const authenticatedFetch = (method, path, data = {}) => {
 }
 
 
-export const checkUser = () => {
+export const checkAdmin = () => {
     let id = parseInt(localStorage.token.substr(0, localStorage.token.indexOf('|')))
     authenticatedFetch('GET', `/api/token/${id}`)
         .then((res) => {
             authenticatedFetch('GET', `/api/user/${res.data}`).then((res) => {
-                console.log(res.data)
+
                 if (res.data !== 'admin') {
                     router.push({ name: 'Dashboard' })
                 }

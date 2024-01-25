@@ -66,6 +66,8 @@ cp .env.example .env (and fill it with correct informations)
 
 php artisan key:generate
 
+php artisan migrate
+
 yarn install
 
 composer install

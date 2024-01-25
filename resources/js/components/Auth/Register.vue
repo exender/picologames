@@ -48,6 +48,7 @@
 			</div>
 
 			<button class="btn btn-primary">Submit</button>
+			<router-link :to="{ name: 'Login' }">Se connecter</router-link>
 		</form>
 	</section>
 </template>

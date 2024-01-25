@@ -1,4 +1,4 @@
-const mix = require('laravel-mix');
+const mix = require('laravel-mix')
 
 
 
@@ -13,7 +13,9 @@ const mix = require('laravel-mix');
  |
  */
 
+
 mix.js('resources/js/app.js', 'public/js')
+    .version()
     .vue({ version: 3 })
     .sass('resources/sass/app.scss', 'public/css')
     .webpackConfig((webpack) => {
@@ -24,5 +26,5 @@ mix.js('resources/js/app.js', 'public/js')
                     VUE_PROD_DEVTOOLS: false,
                 }),
             ],
-        };
+        }
     })

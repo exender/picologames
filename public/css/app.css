@@ -10019,3 +10019,16 @@ h3 {
     border-color: #dee2e6;
   }
 }
+.admin-container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.admin-container .table {
+  width: 70%;
+}
+.admin-container .admin-form {
+  width: 30%;
+}

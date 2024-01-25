@@ -8,9 +8,14 @@ import Login from "../components/Auth/Login"
 
 import Admin from "../components/Admin/Admin"
 import AdminDashboard from "../components/Admin/Dashboard"
+
 import AdminAddMode from "../components/Admin/AddMode"
 import AdminAllModes from "../components/Admin/AllModes"
 import AdminEditMode from "../components/Admin/EditMode"
+
+import AdminAddPiloco from "../components/Admin/AddPiloco"
+import AdminAllPilocos from "../components/Admin/AllPilocos"
+import AdminEditPiloco from "../components/Admin/EditPiloco"
 
 import Player from "../components/Player/Player"
 import Dashboard from "../components/Player/Dashboard"
@@ -88,6 +93,21 @@ const routes = [
                 path: 'edit-mode/:id',
                 component: AdminEditMode,
                 name: 'AdminEditMode',
+            },
+            {
+                path: 'all-pilocos',
+                component: AdminAllPilocos,
+                name: 'AdminAllPilocos'
+            },
+            {
+                path: 'add-piloco',
+                component: AdminAddPiloco,
+                name: 'AdminAddPiloco'
+            },
+            {
+                path: 'edit-piloco/:id',
+                component: AdminEditPiloco,
+                name: 'AdminEditPiloco',
             },
         ]
     }

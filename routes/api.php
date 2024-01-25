@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\TokenController;
 use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\Admin\ModeController;
+use App\Http\Controllers\Admin\PicoloController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,4 +44,13 @@ Route::group(['prefix' => 'mode'], function () {
     Route::get('show/{id}', [ModeController::class, 'show']);
     Route::put('update/{id}', [ModeController::class, 'update']);
     Route::delete('delete/{id}', [ModeController::class, 'destroy']);
+});
+
+Route::group(['prefix' => 'picolo'], function () {
+    Route::get('all', [PicoloController::class, 'index']);
+    Route::post('add', [PicoloController::class, 'store']);
+    Route::get('edit/{id}', [PicoloController::class, 'edit']);
+    Route::get('show/{id}', [PicoloController::class, 'show']);
+    Route::put('update/{id}', [PicoloController::class, 'update']);
+    Route::delete('delete/{id}', [PicoloController::class, 'destroy']);
 });

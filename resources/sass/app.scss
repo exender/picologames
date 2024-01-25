@@ -6,3 +6,21 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+
+
+.admin-container{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .table{
+        width: 70%;
+    }
+    .admin-form{
+        width: 30%;
+    }
+
+}

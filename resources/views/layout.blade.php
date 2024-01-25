@@ -10,12 +10,6 @@
     </head>
     <body>
         <div id="app">
-           
-            
-            <div class="rooter-view-container">
-                <router-view></router-view>
-            </div>
-
         </div>
 
 

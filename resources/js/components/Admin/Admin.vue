@@ -1,12 +1,9 @@
 <template>
-	<div class="rooter-view-container">
-		<router-view></router-view>
-	</div>
+	<router-view></router-view>
 </template>
 
 <script>
 export default {
-
 }
 </script>
 

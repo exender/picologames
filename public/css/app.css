@@ -10019,3 +10019,12 @@ h3 {
     border-color: #dee2e6;
   }
 }
+.admin-container {
+  width: 100%;
+  min-height: 100vh;
+}
+.admin-container .admin-form {
+  display: block;
+  margin: auto;
+  width: 30%;
+}

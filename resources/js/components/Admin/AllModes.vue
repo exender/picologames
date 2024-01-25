@@ -1,5 +1,6 @@
 <template>
-	<table>
+	<h1>All Modes</h1>
+	<table class="table">
 		<tr>
 			<th>id</th>
 			<th>Name</th>
@@ -12,13 +13,16 @@
 			<td>{{ mode.name }}</td>
 			<td>
 				<router-link
+					class="btn btn-warning"
 					:to="{ name: 'AdminEditMode', params: { id: mode.id } }"
 				>
 					Modifier</router-link
 				>
 			</td>
 			<td>
-				<button @click="deleteMode(mode.id)">Supprimer</button>
+				<button class="btn btn-danger" @click="deleteMode(mode.id)">
+					Supprimer
+				</button>
 			</td>
 		</tr>
 	</table>

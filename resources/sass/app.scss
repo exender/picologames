@@ -6,3 +6,17 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+
+
+.admin-container{
+    width: 100%;
+    min-height: 100vh;
+    .admin-form{
+        display: block;
+        margin: auto;
+        width: 30%;
+        
+    }
+
+}

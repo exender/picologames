@@ -1,11 +1,12 @@
 <template>
-	<form @submit.prevent="submit">
-		<div class="form-group">
+	<form class="admin-form" @submit.prevent="submit">
+		<h1>Edit mode</h1>
+		<div class="mb-3">
 			<label for="">Name</label>
-			<input type="text" v-model="form.name" />
+			<input class="form-control" type="text" v-model="form.name" />
 		</div>
 
-		<input type="submit" />
+		<input class="btn btn-primary" type="submit" />
 		<p v-if="status !== null">
 			{{
 				status == 200

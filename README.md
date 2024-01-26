@@ -66,7 +66,7 @@ cp .env.example .env (and fill it with correct informations)
 
 php artisan key:generate
 
-php artisan migrate
+php artisan migrate:fresh --seed
 
 yarn install
 
@@ -77,3 +77,6 @@ php artisan serve
 
 ## Lauch front-end
 yarn run hot
+
+## Start socket
+php artisan websockets:serve

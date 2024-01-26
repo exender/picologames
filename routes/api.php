@@ -8,6 +8,8 @@ use App\Http\Controllers\Auth\TokenController;
 use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\Admin\ModeController;
 use App\Http\Controllers\Admin\PicoloController;
+use App\Http\Controllers\GameController;
+use App\Events\Test;
 
 
 /*
@@ -59,3 +61,13 @@ Route::group(['prefix' => 'picolo'], function () {
 
 
 
+Route::get('play-game-picolo', function(){
+    broadcast(new Test());
+});
+
+
+Route::post('create-game', [GameController::class, 'store']);
+
+Route::post('play-game-picolo', function(){
+    broadcast(new Test());
+});

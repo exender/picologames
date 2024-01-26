@@ -3,7 +3,7 @@
   <table class="table">
     <tr>
       <th>Name</th>
-      <th>Jouer</th>
+      <th></th>
     </tr>
 
     <tr v-for="mode in modes" :key="mode">

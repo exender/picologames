@@ -1,9 +1,8 @@
 <template>
   <h1>Jouer une partie</h1>
   <label for="">picolo</label>
-  <p v-for="picolo in picolos" :key="picolo" :value="picolo.id">
-    {{ picolo.text }}
-  </p>
+  <p>{{ picolos[i].text }}</p>
+  <button :disabled='(i+1) == picolos.length' v-on:click="next(i)">Next</button>
 </template>
 
 <script>
@@ -12,6 +11,7 @@ export default {
   data() {
     return {
       picolos: [],
+      i: 0,
     };
   },
 
@@ -23,6 +23,9 @@ export default {
       ).then((res) => {
         this.picolos = res.data;
       });
+    },
+    next: function (i) {
+      this.i += 1;
     },
   },
 

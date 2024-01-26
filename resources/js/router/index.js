@@ -20,6 +20,8 @@ import AdminEditPiloco from "../components/Admin/EditPiloco"
 import Player from "../components/Player/Player"
 import Dashboard from "../components/Player/Dashboard"
 import CreateRoom from "../components/Player/CreateRoom"
+import PlayGameMode from "../components/Player/PlayGameMode"
+import PlayGamePicolo from "../components/Player/PlayGamePicolo"
 
 
 const routes = [
@@ -65,6 +67,58 @@ const routes = [
                 path: 'create-room',
                 component: CreateRoom,
                 name: 'CreateRoom',
+
+            },
+        ]
+    },
+
+    {
+        path: '/player/',
+        component: Player,
+        beforeEnter: (to, from, next) => {
+            axios.get('/api/authentificated').then(() => {
+                next()
+            }).catch(() => {
+                return next({ name: 'Login' })
+            })
+        },
+        children: [
+            {
+                path: '',
+                component: Dashboard,
+                name: 'Dashboard',
+
+            },
+            {
+                path: 'play-game-mode',
+                component: PlayGameMode,
+                name: 'PlayGameMode',
+
+            },
+        ]
+    },
+
+    {
+        path: '/player/',
+        component: Player,
+        beforeEnter: (to, from, next) => {
+            axios.get('/api/authentificated').then(() => {
+                next()
+            }).catch(() => {
+                return next({ name: 'Login' })
+            })
+        },
+        children: [
+            {
+                path: '',
+                component: Dashboard,
+                name: 'Dashboard',
+
+            },
+            {
+                path: 'play-game-picolo/:id',
+                component: PlayGamePicolo,
+                name: 'PlayGamePicolo',
 
             },
         ]

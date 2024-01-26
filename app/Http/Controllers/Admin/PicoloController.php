@@ -50,14 +50,14 @@ class PicoloController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display a listing of the resource.
      *
-     * @param  \App\Models\Picolo  $picolo
      * @return \Illuminate\Http\Response
      */
-    public function show(Picolo $picolo)
+    public function show($id)
     {
-        //
+        $picolo = Picolo::where('mode', $id)->inRandomOrder()->get();
+        return $picolo;
     }
 
     /**

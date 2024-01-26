@@ -10,7 +10,7 @@
 export default {
 	mounted() {
 		window.Echo.channel('channel')
-			.listen('Test', (e) => {
+			.listen('Hello', (e) => {
 				console.log(e)
 			})
 	},

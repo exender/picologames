@@ -61,7 +61,10 @@ export default {
 				})
 		},
 		getMode: function (id) {
-			return this.modes.find(x => x.id == id).name
+			let mode = this.modes.find(x => x.id == id)
+			if (mode) {
+				return mode.name
+			}
 		}
 	},
 	created() {

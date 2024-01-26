@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<h1>Dashboard</h1>
-		<router-link :to="{ name: 'CreateRoom' }">Créer un salon</router-link>
+		<router-link :to="{ name: 'CreateRoom' }">Lancer une partie</router-link>
 		<button @click.prevent="logout">Logout</button>
 	</div>
 </template>

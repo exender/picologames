@@ -5,8 +5,15 @@
 </template>
 
 <script>
-export default {
 
+
+export default {
+	mounted() {
+		window.Echo.channel('channel')
+			.listen('Hello', (e) => {
+				console.log(e)
+			})
+	},
 }
 </script>
 

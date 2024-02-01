@@ -68,11 +68,13 @@ export default {
 	},
 	methods: {
 		saveForm() {
-			axios.post('/api/register', this.form).then(() => {
-				this.$router.push({ name: 'Dashboard' })
-			}).catch((error) => {
-				this.errors = error.response.data.errors
-			})
+			axios.post('/api/register', this.form)
+				.then((res) => {
+					console.log(res)
+					this.$router.push({ name: 'Dashboard' })
+				}).catch((error) => {
+					console.error(error.response.data.errors)
+				})
 		}
 	}
 }

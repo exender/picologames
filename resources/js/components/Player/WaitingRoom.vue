@@ -9,6 +9,13 @@
 			/>
 		</div>
 		<button @click="redirect">Jouer</button>
+		<input
+			v-on:focus="$event.target.select()"
+			ref="myinput"
+			readonly
+			:value="share"
+			@click="shareCopy"
+		/>
 		<!-- <router-link
 			:to="{
 				name: 'PlayGamePicolo',
@@ -34,7 +41,8 @@ export default {
 			picolos: [],
 			i: 0,
 			user: null,
-			players: []
+			players: [],
+			share: ''
 		}
 	},
 
@@ -50,6 +58,10 @@ export default {
 		},
 		next: function (i) {
 			this.i += 1
+		},
+		shareCopy: function () {
+			this.$refs.myinput.focus()
+			document.execCommand('copy')
 		},
 
 		getUser: async function () {
@@ -100,11 +112,18 @@ export default {
 
 			})
 		},
+		getShareLink: function () {
+			let params = this.$route.params
+
+			this.share = `${params.room}&${params.gameId}&${params.difficultyId}`
+		}
 	},
 
 	created() {
 		this.allPicolo()
 		this.getUser()
+		this.getShareLink()
+
 	},
 	mounted() {
 		window.Echo.channel('channel')

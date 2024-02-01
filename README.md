@@ -115,7 +115,7 @@ php artisan migrate:fresh --seed
 yarn install
 
 ## Lauch server
-php artisan serve
+php artisan serve --host=localhost
 
 ## Lauch front-end
 yarn run hot

@@ -27,7 +27,12 @@
 					</router-link>
 				</div>
 				<div class="h-50 position-relative flex-center-h-v">
-					<div class="btn-partie btn-creer-partie">
+					<div
+						@click="
+							isPopUpJoinRoomVisible = !isPopUpJoinRoomVisible
+						"
+						class="btn-partie btn-creer-partie"
+					>
 						Rejoindre une partie
 					</div>
 					<img
@@ -46,14 +51,22 @@
 		> -->
 		<button @click.prevent="logout">Logout</button>
 	</div>
+
+	<pop-up-join-room
+		@closePopUp="isPopUpJoinRoomVisible = !isPopUpJoinRoomVisible"
+		v-if="isPopUpJoinRoomVisible"
+	/>
 </template>
 
 <script>
 import { checkId } from '../../utils'
+import PopUpJoinRoom from '../PopUp/PopUpJoinRoom.vue'
 export default {
+	components: { PopUpJoinRoom },
 	data() {
 		return {
 			id: null,
+			isPopUpJoinRoomVisible: false
 		}
 	},
 	methods: {

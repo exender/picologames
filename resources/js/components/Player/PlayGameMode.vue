@@ -43,7 +43,7 @@ export default {
 				.then((res) => {
 					console.log(res)
 					this.$router.push({
-						name: 'PlayGamePicolo', params: {
+						name: 'WaitingRoom', params: {
 							difficultyId: e,
 							room: this.data.room,
 							gameId: res.data

@@ -46,3 +46,37 @@
     }
 
 }
+
+.waiting-room-container{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .player-card-container{
+        display: flex;
+        width: 50%;
+        height: 80%;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
+
+        .player-card{
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30%;
+            img{
+                position: absolute;
+                z-index: -1;
+                width: 100%;  
+            }
+
+            p{
+                color: $white;
+            }
+        }
+    }
+}

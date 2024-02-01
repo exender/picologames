@@ -24,6 +24,7 @@ import Player from "../components/Player/Player"
 import Dashboard from "../components/Player/Dashboard"
 import CreateRoom from "../components/Player/CreateRoom"
 import PlayGameMode from "../components/Player/PlayGameMode"
+import WaitingRoom from "../components/Player/WaitingRoom"
 import PlayGamePicolo from "../components/Player/PlayGamePicolo"
 import EditQuestion from "../components/Player/EditQuestion"
 import EditUser from "../components/Player/EditUser"
@@ -96,6 +97,13 @@ const routes = [
                 path: 'play-game-picolo/:room&:gameId&:difficultyId',
                 component: PlayGamePicolo,
                 name: 'PlayGamePicolo',
+                props: true
+
+            },
+            {
+                path: 'waiting-room/:room&:gameId&:difficultyId',
+                component: WaitingRoom,
+                name: 'WaitingRoom',
                 props: true
 
             },

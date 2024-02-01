@@ -1,16 +1,26 @@
 <template>
-	<h1>Jouer une partie</h1>
-	<label for="">picolo</label>
-	<p v-if="picolos.length !== 0">{{ picolos[i].text }}</p>
-	<button :disabled="i + 1 == picolos.length" v-on:click="next(i)">
-		Next
-	</button>
-
-	<div>
-		<p v-for="player in players" :key="player">
-			<player-card :playerName="player.name" />
-		</p>
-	</div>
+	<section class="waiting-room-container">
+		<div class="player-card-container">
+			<player-card
+				v-for="(player, index) in players"
+				:key="index"
+				:playerName="player.name"
+				:index="index + 1"
+			/>
+		</div>
+		<button @click="redirect">Jouer</button>
+		<!-- <router-link
+			:to="{
+				name: 'PlayGamePicolo',
+				params: {
+					difficultyId: this.$attrs.difficultyId,
+					room: this.$attrs.room,
+					gameId: this.$attrs.gameId,
+				},
+			}"
+			>Jouer</router-link
+		> -->
+	</section>
 </template>
 
 <script>
@@ -54,6 +64,10 @@ export default {
 							this.broadcast()
 						})
 				})
+
+		},
+
+		redirect: function () {
 
 		},
 

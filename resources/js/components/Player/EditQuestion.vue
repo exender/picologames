@@ -1,6 +1,6 @@
 <template>
 	<form class="admin-form" @submit.prevent="submit">
-		<h1>Edit piloco</h1>
+		<h1>Add picolo</h1>
 		<div class="mb-3">
 			<label for="">Mode</label>
 			<select
@@ -34,15 +34,6 @@
 				v-model="form.sip"
 			/>
 		</div>
-		<div class="mb-3">
-			<label for="">Publié</label>
-			<input
-				class="form-control"
-				type="text"
-				placeholder="0"
-				v-model="form.published"
-			/>
-		</div>
 		<input class="btn btn-primary" type="submit" />
 		<p v-if="status !== null">
 			{{
@@ -60,6 +51,9 @@ export default {
 	data() {
 		return {
 			form: {
+				mode: null,
+				text: '',
+				sip: null
 			},
 			modes: [],
 			status: null
@@ -67,12 +61,13 @@ export default {
 	},
 
 	methods: {
-
-		getPiloco: function () {
-			console.log(this.$route.params.id)
-			authenticatedFetch('GET', `/api/picolo/edit/${this.$route.params.id}`)
+		submit: function () {
+			authenticatedFetch('POST', `/api/picolo/add`, this.form)
 				.then((res) => {
-					this.form = res.data
+					this.status = res.status
+					setTimeout(() => {
+						this.status = null
+					}, 1000)
 				})
 		},
 		allModes: function () {
@@ -80,20 +75,10 @@ export default {
 				.then((res) => {
 					this.modes = res.data
 				})
-		},
-		submit: function () {
-			authenticatedFetch('PUT', `/api/picolo/update/${this.form.id}`, this.form)
-				.then((res) => {
-					this.status = res.status
-					setTimeout(() => {
-						this.status = null
-					}, 1000)
-				})
 		}
 	},
 	created() {
 		this.allModes()
-		this.getPiloco()
 	},
 }
 </script>

@@ -66,10 +66,9 @@ class PicoloController extends Controller
      * @param  \App\Models\Picolo  $picolo
      * @return \Illuminate\Http\Response
      */
-    public function edit(Picolo $id)
+    public function edit(Picolo $picolo)
     {
-        $picolo = Picolo::find($id);
-        return $picolo[0];
+        return $picolo;
     }
 
     /**
@@ -87,7 +86,10 @@ class PicoloController extends Controller
             'mode' => 'required',
             'text' => 'required',
             'sip' => 'required',
+            'published' => 'required',
         ]);
+
+        // dd($request);
 
         $picolo->update($request);
     }

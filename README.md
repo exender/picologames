@@ -1,76 +1,118 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+Projet dev: Piloco
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Fonctionnement
 
-## About Laravel
+Le principe du jeu est de faire ou répondre à une question ou une action proposé par le jeu. L'echec entrainera des gorgés.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+// Difficulté: 1
+- Faire apparaître les questions en mode aléatoires sans les répéter
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+// Difficulté: 1
+- Définir un ordre aléatoire de joueur
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+// Difficulté: 1
+- Tire au hasard des questions dans la bdd
 
-## Learning Laravel
+// Difficulté: 1
+- A tour de rôle les utilisateurs ont une question
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+// Difficulté: 1
+- Les utilisateurs ont le choix de repondre entre oui et non
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+// Difficulté: 1
+- Une fois la réponse de l'utilisateur on passe au joueur suivant
 
-## Laravel Sponsors
+// Difficulté: 1
+- Parfois advient un malus aléatoire
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+// Difficulté: 1
+- Faire player, et admin
 
-### Premium Partners
+## Contenu CRUD BDD
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
+// Difficulté: 3
+L'Api est en Laravel, elle permet à un utlisateur de:
 
-## Contributing
+- créer un utilisateur
+- modifier un utilisateur
+- se connecter 
+- déconnecter
+- créer une partie
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+// Difficulté: 3
 
-## Code of Conduct
+Le super Admin peut:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- CRUD des modes de jeu
+- CRUD des questions
 
-## Security Vulnerabilities
+// Difficulté: 5
+- Permettre aux joueurs de créer leurs questions
+La question est envoyé aux modérateurs, si la question est validé elle sera ajouté à la base de donnée sinon elle sera refusé.
+Un mail sera envoyé à l'utilisateur pour lui informé de l'état d'avancement de sa question.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-## License
+## Contenu Table
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+// Difficulté: 2
 
-## How to start coding? 
-cp .env.example .env (and fill it with correct informations)
+### Utilisateur
 
-php artisan key:generate
+- nom d'utilisateur
+- date de naissance (majeur)
+- email
+- mot de passe
 
-php artisan migrate:fresh --seed
+## Questions
+- Mode
+- Text
+- Gorgée
 
-yarn install
+Questions possibles :
 
+- 1 minute de sourire non stop pour Yohann, 3 pénalités à chaque manque.
+- Plus de téléphone ! La première personne à consulter son smartphone prend 10 pénalités
+- **JEU** A tour de rôle : vous avez 1 seconde pour dire un mot qui à la suite du précédent, peut conclure sur une phrase sensée. Le ou la perdante prend 3 pénalités, Yohann Commence !
+- **VIRUS** Pour tout le monde : commencez toutes vos phrases par "euuuhhhhh", que ça dure au moins 3 secondes. 4 pénalités à chaque manque.
+- **PENALITE ULTIME** Pour ceux qui vont en boîte après, on se motive... Pénalité ultimeeeeeee ...
+
+### Mode de jeu
+Pour les admins :
+- name
+- description
+
+Plusieurs modes avec un dégré de question différent:
+- Découverte : Pour ceux qui souhaitent commencer la soirée en beauté.
+- Avancé : Pour ceux ou la soirée est déjà dans un stage avancé !
+- Ivrogne (9,99€) : Uniquement pour la team Piloco, de vrai Ivrogne ceux la.
+
+## Difficulté technique
+
+// Difficulté: 7
+- Le jeu sera jouable depuis plusieurs postes connectés entre eux. (web socket, serveur)
+
+// Difficulté: 6
+- Faire un chat
+
+Add
+// Difficulté: 6
+- Faire vocal
+
+// Difficulté: 7
+- Faire visio
+
+With add: 52
+Without add 34 + 6 BDD ORM: 40
+
+
+## Installation pour les devs :
+(Installer PHP et Composer au préalable)
+
+cp .env.example .env
 composer install
+php artisan key:generate
+php artisan migrate:fresh --seed
+yarn install
 
 ## Lauch server
 php artisan serve

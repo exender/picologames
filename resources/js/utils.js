@@ -23,7 +23,7 @@ export const checkAdmin = () => {
         .then((res) => {
             authenticatedFetch('GET', `/api/user/${res.data}`).then((res) => {
 
-                if (res.data !== 'admin') {
+                if (res.data.role !== 'admin') {
                     router.push({ name: 'Dashboard' })
                 }
             })
@@ -31,7 +31,13 @@ export const checkAdmin = () => {
 
 }
 
-
-export const userId = async () => {
-
+export const checkId = async () => {
+    let tokenId = parseInt(localStorage.token.substr(0, localStorage.token.indexOf('|')))
+    let id = null
+    await authenticatedFetch('GET', `/api/token/${tokenId}`)
+        .then((res) => {
+            id = res.data
+        })
+    console.log(id)
+    return Number(id)
 }

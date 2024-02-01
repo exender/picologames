@@ -13,5 +13,6 @@ class Picolo extends Model
         'mode',
         'text',
         'sip',
+        'published',
     ];
 }

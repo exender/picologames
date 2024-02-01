@@ -6,6 +6,7 @@
 			<th>mode</th>
 			<th>Text</th>
 			<th>Gorgée</th>
+			<th>Publié</th>
 			<th>Modifier</th>
 			<th>Supprimer</th>
 		</tr>
@@ -15,6 +16,7 @@
 			<td>{{ getMode(piloco.mode) }}</td>
 			<td>{{ piloco.text }}</td>
 			<td>{{ piloco.sip }}</td>
+			<td>{{ piloco.published }}</td>
 			<td>
 				<router-link
 					class="btn btn-warning"

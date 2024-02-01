@@ -22,7 +22,8 @@ import Dashboard from "../components/Player/Dashboard"
 import CreateRoom from "../components/Player/CreateRoom"
 import PlayGameMode from "../components/Player/PlayGameMode"
 import PlayGamePicolo from "../components/Player/PlayGamePicolo"
-
+import EditQuestion from "../components/Player/EditQuestion"
+import EditUser from "../components/Player/EditUser"
 
 const routes = [
     {
@@ -67,6 +68,76 @@ const routes = [
                 path: 'create-room',
                 component: CreateRoom,
                 name: 'CreateRoom',
+
+            },
+        ]
+    },
+    {
+        path: '/player/',
+        component: Player,
+        beforeEnter: (to, from, next) => {
+            axios.get('/api/authentificated').then(() => {
+                next()
+            }).catch(() => {
+                return next({ name: 'Login' })
+            })
+        },
+        children: [
+            {
+                path: '',
+                component: Dashboard,
+                name: 'Dashboard',
+
+            },
+            {
+                path: 'edit-question',
+                component: EditQuestion,
+                name: 'EditQuestion',
+
+            },
+        ]
+    },
+    {
+        path: '/player/',
+        component: Player,
+        beforeEnter: (to, from, next) => {
+            axios.get('/api/authentificated').then(() => {
+                next()
+            }).catch(() => {
+                return next({ name: 'Login' })
+            })
+        },
+        children: [
+            {
+                path: '',
+                component: Dashboard,
+                name: 'Dashboard',
+
+            },
+            {
+                path: 'edit-user/:id',
+                component: EditUser,
+                name: 'EditUser',
+
+            },
+        ]
+    },
+
+    {
+        path: '/player/',
+        component: Player,
+        beforeEnter: (to, from, next) => {
+            axios.get('/api/authentificated').then(() => {
+                next()
+            }).catch(() => {
+                return next({ name: 'Login' })
+            })
+        },
+        children: [
+            {
+                path: '',
+                component: Dashboard,
+                name: 'Dashboard',
 
             },
             {

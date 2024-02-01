@@ -18,6 +18,7 @@ class CreatePicolosTable extends Migration
             $table->integer('mode');
             $table->text('text');
             $table->integer('sip');
+            $table->boolean('published')->default(0);
             $table->timestamps();
         });
     }

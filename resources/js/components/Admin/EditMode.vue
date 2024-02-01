@@ -23,7 +23,7 @@ export default {
 	data() {
 		return {
 			form: {
-				name: ''
+				name: '',	
 			},
 			status: null
 		}

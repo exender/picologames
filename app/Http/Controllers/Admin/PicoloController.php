@@ -21,6 +21,27 @@ class PicoloController extends Controller
         return $picolos;
     }
 
+    public function suggested()
+    {
+        $picolos = Picolo::where('published', '=', '0')->get();
+
+        return $picolos;
+    }
+
+    public function validatePiloco($id)
+    {
+        $piloco = Picolo::find($id);
+        
+        if($piloco){
+            $piloco->published = 1;
+            $piloco->save();
+        }
+
+        $pilocos = Picolo::all();
+
+        return $pilocos;
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -89,7 +110,6 @@ class PicoloController extends Controller
             'published' => 'required',
         ]);
 
-        // dd($request);
 
         $picolo->update($request);
     }

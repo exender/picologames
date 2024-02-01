@@ -23,4 +23,12 @@ class GamePlayer extends Model
     public function players(){
         return $this->hasMany(User::class, 'id', 'userId');
     }
+
+    // public function game(){
+    //     return $this->belongsTo(Game::class, 'id');
+    // }
+
+    // public function players(){
+    //     return $this->belongsTo(User::class, 'id', 'userId');
+    // }
 }

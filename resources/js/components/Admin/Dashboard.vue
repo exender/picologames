@@ -43,6 +43,17 @@
 				>
 			</td>
 		</tr>
+		<tr>
+			<td>Suggested Pilocos</td>
+			<td></td>
+			<td>
+				<router-link
+					class="btn btn-primary"
+					:to="{ name: 'AdminAllSuggestedPilocos' }"
+					>Voir</router-link
+				>
+			</td>
+		</tr>
 	</table>
 </template>
 

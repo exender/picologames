@@ -34,15 +34,6 @@
 				v-model="form.sip"
 			/>
 		</div>
-		<div class="mb-3">
-			<label for="">Publié</label>
-			<input
-				class="form-control"
-				type="integer"
-				placeholder="0"
-				v-model="form.published"
-			/>
-		</div>
 		<input class="btn btn-primary" type="submit" />
 		<p v-if="status !== null">
 			{{
@@ -63,7 +54,7 @@ export default {
 				mode: null,
 				text: '',
 				sip: null,
-				published: 0
+				published: 1
 			},
 			modes: [],
 			status: null

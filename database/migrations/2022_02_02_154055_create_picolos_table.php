@@ -15,7 +15,8 @@ class CreatePicolosTable extends Migration
     {
         Schema::create('picolos', function (Blueprint $table) {
             $table->id();
-            $table->integer('mode');
+            $table->foreignId('mode')->constrained('modes')->onDelete('cascade');
+
             $table->text('text');
             $table->integer('sip');
             $table->boolean('published')->default(0);

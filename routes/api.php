@@ -57,10 +57,12 @@ Route::group(['prefix' => 'mode'], function () {
 
 Route::group(['prefix' => 'picolo'], function () {
     Route::get('all', [PicoloController::class, 'index']);
+    Route::get('all-suggested', [PicoloController::class, 'suggested']);
     Route::post('add', [PicoloController::class, 'store']);
     Route::get('edit/{picolo}', [PicoloController::class, 'edit']);
     Route::get('show/{id}', [PicoloController::class, 'show']);
     Route::put('update/{id}', [PicoloController::class, 'update']);
+    Route::put('validate/{id}', [PicoloController::class, 'validatePiloco']);
     Route::delete('delete/{id}', [PicoloController::class, 'destroy']);
 });
 

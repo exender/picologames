@@ -21507,44 +21507,10 @@ var routes = [{
     path: 'create-room',
     component: _components_Player_CreateRoom__WEBPACK_IMPORTED_MODULE_14__["default"],
     name: 'CreateRoom'
-  }]
-}, {
-  path: '/player/',
-  component: _components_Player_Player__WEBPACK_IMPORTED_MODULE_12__["default"],
-  beforeEnter: function beforeEnter(to, from, next) {
-    axios.get('/api/authentificated').then(function () {
-      next();
-    })["catch"](function () {
-      return next({
-        name: 'Login'
-      });
-    });
-  },
-  children: [{
-    path: '',
-    component: _components_Player_Dashboard__WEBPACK_IMPORTED_MODULE_13__["default"],
-    name: 'Dashboard'
   }, {
     path: 'play-game-mode',
     component: _components_Player_PlayGameMode__WEBPACK_IMPORTED_MODULE_15__["default"],
     name: 'PlayGameMode'
-  }]
-}, {
-  path: '/player/',
-  component: _components_Player_Player__WEBPACK_IMPORTED_MODULE_12__["default"],
-  beforeEnter: function beforeEnter(to, from, next) {
-    axios.get('/api/authentificated').then(function () {
-      next();
-    })["catch"](function () {
-      return next({
-        name: 'Login'
-      });
-    });
-  },
-  children: [{
-    path: '',
-    component: _components_Player_Dashboard__WEBPACK_IMPORTED_MODULE_13__["default"],
-    name: 'Dashboard'
   }, {
     path: 'play-game-picolo/:room&:gameId&:difficultyId',
     component: _components_Player_PlayGamePicolo__WEBPACK_IMPORTED_MODULE_16__["default"],

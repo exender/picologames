@@ -69,50 +69,10 @@ const routes = [
                 name: 'CreateRoom',
 
             },
-        ]
-    },
-
-    {
-        path: '/player/',
-        component: Player,
-        beforeEnter: (to, from, next) => {
-            axios.get('/api/authentificated').then(() => {
-                next()
-            }).catch(() => {
-                return next({ name: 'Login' })
-            })
-        },
-        children: [
-            {
-                path: '',
-                component: Dashboard,
-                name: 'Dashboard',
-
-            },
             {
                 path: 'play-game-mode',
                 component: PlayGameMode,
                 name: 'PlayGameMode',
-
-            },
-        ]
-    },
-
-    {
-        path: '/player/',
-        component: Player,
-        beforeEnter: (to, from, next) => {
-            axios.get('/api/authentificated').then(() => {
-                next()
-            }).catch(() => {
-                return next({ name: 'Login' })
-            })
-        },
-        children: [
-            {
-                path: '',
-                component: Dashboard,
-                name: 'Dashboard',
 
             },
             {
@@ -124,6 +84,7 @@ const routes = [
             },
         ]
     },
+
 
     {
         path: '/admin/',

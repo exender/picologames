@@ -5,6 +5,12 @@
 	<button :disabled="i + 1 == picolos.length" v-on:click="next(i)">
 		Next
 	</button>
+
+	<div>
+		<p v-for="player in players" :key="player">
+			{{ player.email }}
+		</p>
+	</div>
 </template>
 
 <script>
@@ -15,14 +21,17 @@ export default {
 		return {
 			picolos: [],
 			i: 0,
+			user: null,
+			players: []
 		}
 	},
 
 	methods: {
+
 		allPicolo: function () {
 			authenticatedFetch(
 				"get",
-				`/api/picolo/show/${this.$route.params.id}/`
+				`/api/picolo/show/${this.$attrs.difficultyId}/`
 			).then((res) => {
 				this.picolos = res.data
 			})
@@ -31,18 +40,61 @@ export default {
 			this.i += 1
 		},
 
+		getUser: async function () {
+			let id = parseInt(localStorage.token.substr(0, localStorage.token.indexOf('|')))
+			await authenticatedFetch('GET', `/api/token/${id}`)
+				.then((res) => {
+					authenticatedFetch('GET', `/api/user/${res.data}`).then((res) => {
+
+						this.user = res.data.id
+						console.log(this.user)
+					})
+						.finally(() => {
+							this.broadcast()
+						})
+				})
+
+		},
+
 
 		broadcast: function () {
-			axios.post(`/api/play-game-picolo`, localStorage.token)
-		}
+
+			const data = {
+				gameId: this.$attrs.gameId,
+				userId: this.user
+
+			}
+
+			console.log(data)
+
+
+			authenticatedFetch(
+				"POST",
+				`/api/game-players`, data
+			)
+				.finally(() => {
+					this.getGame()
+				})
+
+
+		},
+		getGame: function () {
+			authenticatedFetch(
+				"GET",
+				`/api/game-players/${this.$attrs.gameId}/`
+			).then((res) => {
+				this.players = res.data
+			})
+		},
 	},
 
 	created() {
 		this.allPicolo()
-		this.broadcast()
+		this.getUser()
 	},
 };
 </script>
 
 <style>
 </style>
+

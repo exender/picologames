@@ -80,3 +80,9 @@ yarn run hot
 
 ## Start socket
 php artisan websockets:serve
+
+
+
+faire table gameplayer 
+faire trello
+demander prof event et foreign key

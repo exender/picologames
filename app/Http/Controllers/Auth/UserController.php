@@ -9,6 +9,6 @@ class UserController extends Controller
 {
     public function index($id){
         $user = User::where('id',$id)->get();
-        return $user[0]->role;
+        return $user[0];
     }
 }

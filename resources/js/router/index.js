@@ -116,7 +116,7 @@ const routes = [
 
             },
             {
-                path: 'play-game-picolo/:roomId',
+                path: 'play-game-picolo/:room&:gameId&:difficultyId',
                 component: PlayGamePicolo,
                 name: 'PlayGamePicolo',
                 props: true

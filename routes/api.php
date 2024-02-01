@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\Admin\ModeController;
 use App\Http\Controllers\Admin\PicoloController;
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\GamePlayerController;
 use App\Events\Test;
 
 
@@ -71,3 +72,13 @@ Route::post('create-game', [GameController::class, 'store']);
 Route::post('play-game-picolo', function(){
     broadcast(new Test());
 });
+
+
+Route::put('add-player-game', [GameController::class, 'update']);
+
+
+// Route::apiResource('game-players', GamePlayerController::class);
+
+
+Route::get('game-players/{id}', [GamePlayerController::class, 'index']);
+Route::post('game-players', [GamePlayerController::class, 'store']);

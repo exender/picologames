@@ -30,3 +30,8 @@ export const checkAdmin = () => {
         })
 
 }
+
+
+export const userId = async () => {
+
+}

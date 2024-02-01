@@ -9,7 +9,9 @@
 		<tr v-for="mode in modes" :key="mode">
 			<td>{{ mode.name }}</td>
 			<td>
-				<button @click="submit" class="btn btn-warning">Jouer</button>
+				<button @click="submit(mode.id)" class="btn btn-warning">
+					Jouer
+				</button>
 			</td>
 		</tr>
 	</table>
@@ -22,7 +24,7 @@ export default {
 		return {
 			modes: [],
 			data: {
-				roomId: '',
+				room: null,
 				playerId: parseInt(localStorage.token.substr(0, localStorage.token.indexOf('|')))
 			}
 		}
@@ -35,14 +37,16 @@ export default {
 			})
 		},
 
-		submit: function () {
+		submit: function (e) {
 
 			authenticatedFetch("POST", "/api/create-game", this.data)
-				.then(() => {
+				.then((res) => {
+					console.log(res)
 					this.$router.push({
 						name: 'PlayGamePicolo', params: {
-							id: mode.id,
-							roomId: data.roomId,
+							difficultyId: e,
+							room: this.data.room,
+							gameId: res.data
 						}
 					})
 				})
@@ -54,7 +58,7 @@ export default {
 
 	created() {
 		this.allModes()
-		this.data.roomId = Math.floor((1 + Math.random()) * 0x10000)
+		this.data.room = Math.floor((1 + Math.random()) * 0x10000)
 			.toString(16)
 			.substring(1)
 	},

@@ -10,7 +10,10 @@ class Game extends Model
     use HasFactory;
 
     protected $fillable = [
-        'room-id',
-        'player-id',
+        'room',
     ];
+
+    public function gamePlayers(){
+        return $this->hasMany(GamePlayer::class, 'gameId');
+    }
 }

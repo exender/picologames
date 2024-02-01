@@ -19475,13 +19475,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  mounted: function mounted() {
-    window.Echo.channel('channel').listen('Test', function (e) {
-      console.log(e);
-    });
-  }
-});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
 
 /***/ }),
 
@@ -20112,7 +20106,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return (0,_utils__WEBPACK_IMPORTED_MODULE_1__.authenticatedFetch)('GET', "/api/token/".concat(id)).then(function (res) {
                   (0,_utils__WEBPACK_IMPORTED_MODULE_1__.authenticatedFetch)('GET', "/api/user/".concat(res.data)).then(function (res) {
                     _this2.user = res.data.id;
-                    console.log(_this2.user);
                   })["finally"](function () {
                     _this2.broadcast();
                   });
@@ -20139,7 +20132,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         gameId: this.$attrs.gameId,
         userId: this.user
       };
-      console.log(data);
       (0,_utils__WEBPACK_IMPORTED_MODULE_1__.authenticatedFetch)("POST", "/api/game-players", data)["finally"](function () {
         _this3.getGame();
       });
@@ -20155,6 +20147,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   created: function created() {
     this.allPicolo();
     this.getUser();
+  },
+  mounted: function mounted() {
+    var _this5 = this;
+
+    window.Echo.channel('channel').listen('Test', function (e) {
+      console.log(e);
+
+      _this5.getGame();
+    });
   }
 });
 

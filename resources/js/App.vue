@@ -8,13 +8,7 @@
 
 
 export default {
-	mounted() {
 
-		window.Echo.channel('channel')
-			.listen('Test', (e) => {
-				console.log(e)
-			})
-	},
 }
 </script>
 

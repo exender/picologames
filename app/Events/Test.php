@@ -27,7 +27,7 @@ class Test implements ShouldBroadcast
     public function broadcastWith(){
       
         return [
-            'Auth::user()->id'
+            'Un utilisateur vient de rejoindre la partie'
         ];
     }
 

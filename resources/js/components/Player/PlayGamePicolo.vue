@@ -47,7 +47,6 @@ export default {
 					authenticatedFetch('GET', `/api/user/${res.data}`).then((res) => {
 
 						this.user = res.data.id
-						console.log(this.user)
 					})
 						.finally(() => {
 							this.broadcast()
@@ -64,10 +63,6 @@ export default {
 				userId: this.user
 
 			}
-
-			console.log(data)
-
-
 			authenticatedFetch(
 				"POST",
 				`/api/game-players`, data
@@ -84,6 +79,9 @@ export default {
 				`/api/game-players/${this.$attrs.gameId}/`
 			).then((res) => {
 				this.players = res.data
+
+
+
 			})
 		},
 	},
@@ -91,6 +89,14 @@ export default {
 	created() {
 		this.allPicolo()
 		this.getUser()
+	},
+	mounted() {
+		window.Echo.channel('channel')
+			.listen('Test', (e) => {
+				console.log(e)
+				this.getGame()
+			})
+
 	},
 };
 </script>

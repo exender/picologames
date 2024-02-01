@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\GamePlayer;
 use App\Models\Game;
 use App\Http\Requests\StoreGamePlayerRequest;
+use App\Events\Test;
 use App\Http\Requests\UpdateGamePlayerRequest;
 
 class GamePlayerController extends Controller
@@ -57,6 +58,7 @@ class GamePlayerController extends Controller
         $check = GamePlayer:: where('userId', '=', $request->userId)
                             ->where('gameId', '=', $request->gameId)->first();
         if($check === null){
+            broadcast(new Test());
             $createdGame = GamePlayer::create($gamePlayer);
             return $createdGame->id;
         }
@@ -64,7 +66,6 @@ class GamePlayerController extends Controller
 
 
 
-        // broadcast(new Test());
 
     }
 

@@ -17,3 +17,15 @@ Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 });
 
+
+Broadcast::channel('redirect.{gameId}', function ($gameId) {
+    return $gameId;
+});
+
+Broadcast::channel('next.{gameId}', function ($gameId) {
+    return $gameId;
+});
+
+Broadcast::channel('msg.{gameId}', function ($gameId) {
+    return $gameId;
+});

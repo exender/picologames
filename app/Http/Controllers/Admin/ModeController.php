@@ -53,9 +53,10 @@ class ModeController extends Controller
      * @param  \App\Models\Mode  $mode
      * @return \Illuminate\Http\Response
      */
-    public function show(Mode $mode)
+    public function show(Mode $id)
     {
-        //
+        $mode = Mode::find($id);
+        return $mode;
     }
 
     /**

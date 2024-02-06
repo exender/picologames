@@ -10,27 +10,31 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Picolo;
 
-class Redirect implements ShouldBroadcast
+class Msg implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $gameId;
 
+    public $gameMsg; 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($gameId)
+
+    public function __construct($gameMsg)
     {
-        $this->gameId = $gameId;
+        $this->gameMsg = $gameMsg;
     }
 
     public function broadcastWith(){
       
         return [
-            $this->gameId
+            $this->gameMsg['user'],
+            $this->gameMsg['msg'],
+
         ];
     }
 
@@ -41,7 +45,7 @@ class Redirect implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        // dd($request);
-        return new PrivateChannel('redirect.'.$this->gameId);
+        // dd($this->gameMsg['gameId']);
+        return new PrivateChannel('msg.'.$this->gameMsg['gameId']);
     }
 }

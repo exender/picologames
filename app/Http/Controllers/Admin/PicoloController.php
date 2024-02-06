@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Picolo;
 use App\Http\Requests\StorePicoloRequest;
 use App\Http\Requests\UpdatePicoloRequest;
+use App\Events\Play;
 
 class PicoloController extends Controller
 {
@@ -77,9 +78,11 @@ class PicoloController extends Controller
      */
     public function show($id)
     {
-        $picolo = Picolo::where('mode', $id)->inRandomOrder()->get();
-        return $picolo;
+        $picolos = Picolo::where('mode', $id)->inRandomOrder()->limit(5)->get();
+        broadcast(new Play($picolos));
+        return $picolos;
     }
+
 
     /**
      * Show the form for editing the specified resource.

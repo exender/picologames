@@ -1,7 +1,6 @@
 <template>
-	<div class="player-card">
-		<img :src="`/img/beer${index}.svg`" alt="" />
-		<p>{{ playerName }}</p>
+	<div class="container-beer" :style="`background-image: url('/img/beer${index}.svg')`">
+		<span>{{ playerName }}</span>
 	</div>
 </template>
 

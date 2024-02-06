@@ -1,7 +1,5 @@
 <template>
 	<div>
-		<!-- <router-link :to="{ name: 'CreateRoom' }">Lancer une partie</router-link>
-		<button @click.prevent="logout">Logout</button> -->
 		<div class="dashboard">
 			<div class="piloco-presentation">
 				<img
@@ -10,8 +8,25 @@
 					alt="logo de piloco"
 				/>
 				<div class="presentation-texte">
-					Un jeu fait uniquement pour vous amuser en soirée !
+					Bienvenue
+					<span v-if="id" class="name-player"> {{ name }} </span> !
+					<br />
+					Piloco est un jeu réalisé uniquement pour vous amuser en
+					soirée !
 				</div>
+
+				<p v-if="name" class="name-questions">
+					<button
+						v-if="id"
+						@click="isPopUpQuestion = !isPopUpQuestion"
+					>
+						Proposer une question ?
+					</button>
+				</p>
+
+				<button v-if="id" class="logout-btn" @click.prevent="logout">
+					Logout
+				</button>
 			</div>
 			<div class="game-create-start">
 				<div class="h-50 position-relative flex-center-h-v">
@@ -20,14 +35,28 @@
 						alt="Créer la partie"
 						class="img-creation-partie"
 					/>
-					<router-link :to="{ name: 'PlayGameMode' }">
+					<router-link
+						v-if="id"
+						class="link-to-join-game"
+						:to="{ name: 'PlayGameMode' }"
+					>
 						<div class="btn-partie btn-rejoindre-partie">
 							Créer la partie
+						</div>
+					</router-link>
+					<router-link
+						v-else
+						class="link-to-join-game"
+						:to="{ name: 'Login' }"
+					>
+						<div class="btn-partie btn-rejoindre-partie">
+							Se connecter
 						</div>
 					</router-link>
 				</div>
 				<div class="h-50 position-relative flex-center-h-v">
 					<div
+						v-if="id"
 						@click="
 							isPopUpJoinRoomVisible = !isPopUpJoinRoomVisible
 						"
@@ -35,6 +64,15 @@
 					>
 						Rejoindre une partie
 					</div>
+					<router-link
+						v-else
+						class="link-to-join-game"
+						:to="{ name: 'Register' }"
+					>
+						<div class="btn-partie btn-creer-partie">
+							Creer un compte
+						</div>
+					</router-link>
 					<img
 						src="/img/rejoindre-partie.png"
 						alt="Rejoindre une partie"
@@ -43,36 +81,36 @@
 				</div>
 			</div>
 		</div>
-		<router-link :to="{ name: 'EditQuestion' }"
-			>Proposer une question</router-link
-		>
-		<!-- <router-link :to="{ name: 'EditUser', params: { id: id } }"
-			>Modifier profil</router-link
-		> -->
-		<button @click.prevent="logout">Logout</button>
 	</div>
 
 	<pop-up-join-room
 		@closePopUp="isPopUpJoinRoomVisible = !isPopUpJoinRoomVisible"
 		v-if="isPopUpJoinRoomVisible"
 	/>
+	<pop-up-question
+		@closePopUp="isPopUpQuestion = !isPopUpQuestion"
+		v-if="isPopUpQuestion"
+	/>
 </template>
 
 <script>
 import { checkId } from '../../utils'
 import PopUpJoinRoom from '../PopUp/PopUpJoinRoom.vue'
+import PopUpQuestion from '../PopUp/PopUpQuestion.vue'
 export default {
-	components: { PopUpJoinRoom },
+	components: { PopUpJoinRoom, PopUpQuestion },
 	data() {
 		return {
 			id: null,
-			isPopUpJoinRoomVisible: false
+			isPopUpJoinRoomVisible: false,
+			isPopUpQuestion: false,
+			name: localStorage.name
 		}
 	},
 	methods: {
 		logout() {
 			axios.post('/api/logout').then(() => {
-				this.$router.push({ name: 'Home' })
+				this.id = null
 			})
 		},
 		getId: function () {
@@ -157,6 +195,7 @@ export default {
 	}
 
 	.btn-creer-partie {
+		cursor: pointer;
 		background-color: $orange;
 		color: $white;
 		font-size: 2rem;
@@ -179,7 +218,7 @@ export default {
 			text-align: center;
 			margin-top: 40px;
 			color: $white;
-			font-size: 2rem;
+			font-size: 1.3rem;
 			margin-left: 20px;
 			margin-right: 20px;
 		}

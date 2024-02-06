@@ -2,9 +2,7 @@
 	<h1>Jouer une partie</h1>
 	<label for="">picolo</label>
 	<p v-if="picolos.length !== 0">{{ picolos[i].text }}</p>
-	<button :disabled="i + 1 == picolos.length" v-on:click="next(i)">
-		Next
-	</button>
+	<button :disabled="i + 1 == picolos.length" @click="next(i)">Next</button>
 
 	<div>
 		<p v-for="player in players" :key="player">
@@ -38,8 +36,11 @@ export default {
 				this.picolos = res.data
 			})
 		},
-		next: function (i) {
-			this.i += 1
+		next: function () {
+			authenticatedFetch(
+				"post",
+				`/api/next`
+			)
 		},
 
 		getUser: async function () {
@@ -51,6 +52,7 @@ export default {
 						this.user = res.data.id
 					})
 						.finally(() => {
+
 							this.broadcast()
 						})
 				})
@@ -81,23 +83,41 @@ export default {
 				`/api/game-players/${this.$attrs.gameId}/`
 			).then((res) => {
 				this.players = res.data
+				if (this.user == this.players[0].id) {
+					this.allPicolo()
+				}
 
 
 
 			})
 		},
+		getFirstQuestion: function (e) {
+			if (this.players.length !== 0 && this.user !== this.players[0].id) {
+				console.log(e)
+
+				this.picolos = e[0]
+				this.getGame()
+			}
+		}
 	},
 
 	created() {
-		this.allPicolo()
 		this.getUser()
 	},
 	mounted() {
-		window.Echo.channel('channel')
-			.listen('Test', (e) => {
-				console.log(e)
-				this.getGame()
+
+		window.Echo.channel('play')
+			.listen('Play', (e) => {
+				this.getFirstQuestion(e)
+
 			})
+		window.Echo.channel('next')
+			.listen('Next', (e) => {
+				console.log(e)
+				this.i += 1
+
+			})
+
 
 	},
 };

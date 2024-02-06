@@ -92,3 +92,4 @@ Route::post('game-players', [GamePlayerController::class, 'store']);
 
 
 Route::post('redirect', [GameController::class, 'redirect']);
+Route::post('next', [GameController::class, 'next']);

@@ -8,14 +8,18 @@
 				:index="index + 1"
 			/>
 		</div>
-		<button @click="redirect">Jouer</button>
-		<input
-			v-on:focus="$event.target.select()"
-			ref="myinput"
-			readonly
-			:value="share"
-			@click="shareCopy"
-		/>
+		<div v-if="players.length !== 0">
+			<button v-if="user == players[0].id" @click="redirect">
+				Jouer
+			</button>
+			<input
+				v-on:focus="$event.target.select()"
+				ref="myinput"
+				readonly
+				:value="share"
+				@click="shareCopy"
+			/>
+		</div>
 		<!-- <router-link
 			:to="{
 				name: 'PlayGamePicolo',
@@ -48,17 +52,7 @@ export default {
 
 	methods: {
 
-		allPicolo: function () {
-			authenticatedFetch(
-				"get",
-				`/api/picolo/show/${this.$attrs.difficultyId}/`
-			).then((res) => {
-				this.picolos = res.data
-			})
-		},
-		next: function (i) {
-			this.i += 1
-		},
+
 		shareCopy: function () {
 			this.$refs.myinput.focus()
 			document.execCommand('copy')
@@ -80,6 +74,12 @@ export default {
 		},
 
 		redirect: function () {
+
+			authenticatedFetch(
+				"POST",
+				`/api/redirect`
+			)
+
 
 		},
 
@@ -120,7 +120,6 @@ export default {
 	},
 
 	created() {
-		this.allPicolo()
 		this.getUser()
 		this.getShareLink()
 
@@ -130,6 +129,18 @@ export default {
 			.listen('Test', (e) => {
 				console.log(e)
 				this.getGame()
+			})
+
+		window.Echo.channel('redirect')
+			.listen('Redirect', (e) => {
+				this.$router.push({
+					name: 'PlayGamePicolo',
+					params: {
+						difficultyId: this.$attrs.difficultyId,
+						room: this.$attrs.room,
+						gameId: this.$attrs.gameId,
+					}
+				})
 			})
 
 	},

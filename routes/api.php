@@ -89,3 +89,6 @@ Route::put('add-player-game', [GameController::class, 'update']);
 
 Route::get('game-players/{id}', [GamePlayerController::class, 'index']);
 Route::post('game-players', [GamePlayerController::class, 'store']);
+
+
+Route::post('redirect', [GameController::class, 'redirect']);

@@ -62,6 +62,10 @@ class GamePlayerController extends Controller
             $createdGame = GamePlayer::create($gamePlayer);
             return $createdGame->id;
         }
+        
+
+
+
 
     }
 

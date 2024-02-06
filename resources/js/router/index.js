@@ -30,7 +30,11 @@ import EditQuestion from "../components/Player/EditQuestion"
 import EditUser from "../components/Player/EditUser"
 
 const routes = [
-
+    {
+        path: '/',
+        component: Home,
+        name: 'Home'
+    },
     {
         path: '/auth/',
         component: Auth,
@@ -49,7 +53,7 @@ const routes = [
     },
 
     {
-        path: '/',
+        path: '/player/',
         component: Player,
         beforeEnter: (to, from, next) => {
             axios.get('/api/authentificated').then(() => {

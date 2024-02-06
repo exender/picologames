@@ -69,7 +69,7 @@ export default {
 	methods: {
 
 		getPiloco: function () {
-			// console.log(this.$route.params.id)
+			console.log(this.$route.params.id)
 			authenticatedFetch('GET', `/api/picolo/edit/${this.$route.params.id}`)
 				.then((res) => {
 					this.form = res.data

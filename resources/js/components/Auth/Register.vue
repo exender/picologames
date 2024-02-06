@@ -1,6 +1,6 @@
 <template>
 	<section class="auth-container">
-		<h1>Rejoindre la team Piloco !</h1>
+		<h1> Rejoindre la team Piloco ! </h1>
 		<form @submit.prevent="saveForm" class="mt-3">
 			<span v-if="this.form.mdpCorrespondPas" class="error-messages">
 				Tu es déja bourré ? Le mot de passe ne correspond pas...
@@ -15,8 +15,7 @@
 						class="form-control"
 						id="name"
 						placeholder="Votre nom"
-						v-model="form.name"
-						required
+						v-model="form.name" required
 					/>
 				</div>
 				<div class="form-group">
@@ -27,8 +26,7 @@
 						class="form-control"
 						id="email"
 						placeholder="Adresse email"
-						v-model="form.email"
-						required
+						v-model="form.email" required
 					/>
 				</div>
 			</div>
@@ -42,14 +40,11 @@
 						id="exampleInputPassword1"
 						placeholder="Mot de passe"
 						minlength="8"
-						v-model="form.password"
-						required
+						v-model="form.password" required
 					/>
 				</div>
 				<div class="form-group">
-					<label for="password_confirmation"
-						>Confirmer le mot de apsse</label
-					>
+					<label for="password_confirmation">Confirmer le mot de apsse</label>
 					<input
 						type="password"
 						name="password_confirmation"
@@ -57,17 +52,13 @@
 						id="password_confirmation"
 						placeholder="Confirmation mot de passe"
 						minlength="8"
-						v-model="form.password_confirmation"
-						required
+						v-model="form.password_confirmation" required
 					/>
 				</div>
 			</div>
 
-			<button class="btn-connexion-inscription">S'inscrire</button>
-			<div class="mt-1">
-				Déja un compte ?
-				<router-link :to="{ name: 'Login' }">Se connecter</router-link>
-			</div>
+			<button class="btn-connexion-inscription"> S'inscrire </button>
+			<div class="mt-1"> Déja un compte ? <router-link :to="{ name: 'Login' }">Se connecter</router-link> </div>
 		</form>
 	</section>
 </template>
@@ -88,19 +79,17 @@ export default {
 	},
 	methods: {
 		saveForm() {
-			if (this.form.password === this.form.password_confirmation) {
+			if(this.form.password === this.form.password_confirmation) {
 				axios.post('/api/register', this.form)
-					.then((res) => {
-						// console.log(res)
-						localStorage.name = res.data[0].name
-						localStorage.token = res.data[2]
-						this.$router.push({ name: 'Dashboard' })
-					}).catch((error) => {
-						console.error(error.response.data.errors)
-					})
+				.then((res) => {
+					console.log(res)
+					this.$router.push({ name: 'Dashboard' })
+				}).catch((error) => {
+					console.error(error.response.data.errors)
+				})
 			}
-			else {
-				this.form.mdpCorrespondPas = true
+			else{
+				this.form.mdpCorrespondPas = true;
 			}
 		}
 	}

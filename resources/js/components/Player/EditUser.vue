@@ -47,14 +47,14 @@
 				/>
 			</div>
 
-			<input class="btn btn-primary" type="submit" />
-			<p v-if="status !== null">
-				{{
-					status == 200
-						? "Enregistré avec succés"
-						: "Un probleme est survenu"
-				}}
-			</p>
+            <input class="btn btn-primary" type="submit" />
+            <p v-if="status !== null">
+                {{
+                    status == 200
+                        ? "Enregistré avec succés"
+                        : "Un probleme est survenu"
+                }}
+            </p>
 		</form>
 	</section>
 </template>
@@ -71,8 +71,8 @@ export default {
 				password_confirmation: ''
 			},
 			errors: [],
-			status: null,
-			id: null
+            status: null,
+            id: null
 		}
 	},
 	methods: {
@@ -85,22 +85,22 @@ export default {
 					}, 1000)
 				})
 		},
-		getUser: function () {
+        getUser: function () {
 			authenticatedFetch('GET', `/api/user/edit/${this.$route.params.id}`)
 				.then((res) => {
 					this.form = res.data
 				})
 		},
-		getId: function () {
+        getId: function () {
 			checkId().then((num) =>
 				this.id = num
 			)
 		}
 	},
-	created() {
+    created() {
 		this.getUser()
-		this.getId()
-		// console.log('test', this.id)
+        this.getId()
+        console.log('test', this.id)
 	},
 }
 </script>

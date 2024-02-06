@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Auth;
 use App\Events\Test;
 use App\Events\Redirect;
 use App\Events\Next;
-use App\Events\Msg;
 
 class GameController extends Controller
 {
@@ -24,30 +23,16 @@ class GameController extends Controller
     }
 
 
-    public function redirect(StoreGameRequest $gameId)
+    public function redirect()
     {
-        // dd($gameId->id);
-        broadcast(new Redirect($gameId->id));  
+        broadcast(new Redirect());  
     }
 
-    public function next(StoreGameRequest $gameId)
+    public function next()
     {
        
-        broadcast(new Next($gameId->id));
+        broadcast(new Next());
     }
-
-    public function msg(StoreGameRequest $gameMsg)
-    {
-
-        $msg = [
-            'gameId' => $gameMsg->gameId,
-            'msg' => $gameMsg->msg,
-            'user' => $gameMsg->user,
-
-        ];
-        broadcast(new Msg($msg));
-    }
-
 
     /**
      * Show the form for creating a new resource.

@@ -15,22 +15,19 @@ class Redirect implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $gameId;
-
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($gameId)
+    public function __construct()
     {
-        $this->gameId = $gameId;
     }
 
     public function broadcastWith(){
       
         return [
-            $this->gameId
+            'redirection'
         ];
     }
 
@@ -42,6 +39,6 @@ class Redirect implements ShouldBroadcast
     public function broadcastOn()
     {
         // dd($request);
-        return new PrivateChannel('redirect.'.$this->gameId);
+        return new Channel('redirect');
     }
 }

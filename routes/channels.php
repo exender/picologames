@@ -19,6 +19,10 @@ Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
 
 
 Broadcast::channel('redirect.{gameId}', function ($gameId) {
-    // dd($gameId);
     return $gameId;
 });
+
+Broadcast::channel('next.{gameId}', function ($gameId) {
+    return $gameId;
+});
+

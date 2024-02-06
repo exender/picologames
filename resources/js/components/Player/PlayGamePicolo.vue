@@ -73,9 +73,13 @@ export default {
 			})
 		},
 		next: function () {
+			const data = {
+				id: this.$attrs.gameId
+			}
 			authenticatedFetch(
 				"post",
-				`/api/next`
+				`/api/next`,
+				data
 			)
 		},
 
@@ -147,7 +151,7 @@ export default {
 				this.getFirstQuestion(e)
 
 			})
-		window.Echo.channel('next')
+		window.Echo.private(`next.${this.$attrs.gameId}`)
 			.listen('Next', (e) => {
 				if (this.i < this.picolos.length - 1) {
 					this.i += 1

@@ -533,6 +533,18 @@
 }
 
 .chat-container{
+    .message-sent{
+        border: 2px solid white;
+        background-color: black;
+        border-radius: 3px;
+        color: white;
+        margin-right: 5px;
+
+        &::placeholder{
+            color: white;
+        }
+    }
+
     .user-name-chat{
         font-size: 0.5rem;
     }

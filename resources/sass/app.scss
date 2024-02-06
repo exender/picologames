@@ -21,7 +21,8 @@
 }
 
 
-.auth-container {
+.auth-container{
+    position: relative;
     width: 100%;
     min-height: 100vh;
     display: flex;
@@ -218,7 +219,6 @@
 }
 
 .container-game {
-    cursor: pointer;
     position: relative;
     height: 100vh;
     width: 100%;
@@ -228,6 +228,23 @@
     align-items: center;
     color: $white;
     background-color: black;
+
+    .game-tchat{
+        position: absolute;
+        top: 20px;
+        right: 20px;
+
+        .game-tchat-style{
+            cursor: pointer;
+            width: 30px;
+            transition: 0.3s;
+
+            &:hover{
+                transform: scale(1.1);
+                transition: 0.3s;
+            }
+        }
+    }
 
     .link-dashboard {
         color: $orange;
@@ -270,6 +287,22 @@
     .question-game {
         text-align: center;
         font-size: 2rem;
+        
+        .question-game-btn{
+            border: 3px solid white;
+            border-radius: 3px;
+            padding: 5px 15px;
+            color: white;
+            font-size: 1.2rem;
+            background-color: black;
+            transition: 0.3s;
+
+            &:hover{
+                background-color: white;
+                color: black;
+                transition: 0.3s;
+            }
+        }
 
         .color-winner {
             color: $orange;
@@ -497,4 +530,16 @@
     padding: 2px;
     border: 3px solid $orange;
     margin: 15px 0px;
+}
+
+.chat-container{
+    .user-name-chat{
+        font-size: 0.5rem;
+    }
+    .message-chat{
+        background-color: red;
+        border-radius: 5px;
+        width: fit-content;
+        padding: 5px 10px;
+    }
 }

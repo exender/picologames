@@ -1,5 +1,8 @@
 <template>
 	<div class="container-game">
+		<div class="game-tchat">
+			<img class="game-tchat-style" src="/img/message.png" alt="" />
+		</div>
 		<router-link class="link-dashboard" :to="{ name: 'Dashboard' }">
 			<div class="menu">
 				<img
@@ -14,8 +17,8 @@
 
 		<p class="question-game" v-if="picolos.length !== 0 && !isEnded">
 			<span>{{ players[i % players.length].name }}</span>
-			{{ picolos[i].text }}
-			<button
+			{{ picolos[i].text }} <br>
+			<button class="question-game-btn"
 				v-if="players[i % players.length].id == user"
 				@click="next(i)"
 			>

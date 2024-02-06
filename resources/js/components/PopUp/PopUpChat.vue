@@ -6,7 +6,11 @@
 		></div>
 		<div class="pop-up">
 			<div class="chat-container">
-				<div v-for="message in messages" :key="message">
+				<div
+					:class="message[0] == user ? 'own-message' : ''"
+					v-for="message in messages"
+					:key="message"
+				>
 					<span class="user-name-chat">{{
 						getUser(message[0])
 					}}</span>
@@ -27,12 +31,13 @@ export default {
 	props: {
 		gameId: String,
 		user: Number,
-		players: Array
+		players: Array,
+		messages: Array
 	},
 	data() {
 		return {
 			msg: '',
-			messages: []
+			newMessage: false
 		}
 	},
 
@@ -58,18 +63,6 @@ export default {
 		}
 	},
 
-	mounted() {
-		window.Echo.private(`msg.${this.gameId}`)
-			.listen('Msg', (e) => {
-				console.log(e)
-				this.messages.push(e)
-
-				if (this.messages.length >= 10) {
-					this.messages.shift()
-				}
-
-			})
-	},
 }
 </script>
 

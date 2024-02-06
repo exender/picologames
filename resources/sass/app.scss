@@ -21,7 +21,7 @@
 }
 
 
-.auth-container{
+.auth-container {
     position: relative;
     width: 100%;
     min-height: 100vh;
@@ -229,20 +229,34 @@
     color: $white;
     background-color: black;
 
-    .game-tchat{
+    .game-tchat {
         position: absolute;
         top: 20px;
         right: 20px;
 
-        .game-tchat-style{
+        .game-tchat-style {
             cursor: pointer;
             width: 30px;
             transition: 0.3s;
 
-            &:hover{
+            &:hover {
                 transform: scale(1.1);
                 transition: 0.3s;
             }
+        }
+
+        span {
+            position: absolute;
+            bottom: -5px;
+            right: -5px;
+            height: 20px;
+            width: 20px;
+            border: solid 2px $yellow;
+            background-color: $yellow;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
     }
 
@@ -287,8 +301,8 @@
     .question-game {
         text-align: center;
         font-size: 2rem;
-        
-        .question-game-btn{
+
+        .question-game-btn {
             border: 3px solid white;
             border-radius: 3px;
             padding: 5px 15px;
@@ -297,7 +311,7 @@
             background-color: black;
             transition: 0.3s;
 
-            &:hover{
+            &:hover {
                 background-color: white;
                 color: black;
                 transition: 0.3s;
@@ -532,23 +546,27 @@
     margin: 15px 0px;
 }
 
-.chat-container{
-    .message-sent{
+.chat-container {
+
+
+
+    .message-sent {
         border: 2px solid white;
         background-color: black;
         border-radius: 3px;
         color: white;
         margin-right: 5px;
 
-        &::placeholder{
+        &::placeholder {
             color: white;
         }
     }
 
-    .user-name-chat{
+    .user-name-chat {
         font-size: 0.5rem;
     }
-    .message-chat{
+
+    .message-chat {
         background-color: red;
         border-radius: 5px;
         width: fit-content;

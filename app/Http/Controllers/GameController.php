@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Events\Test;
 use App\Events\Redirect;
 use App\Events\Next;
+use App\Events\Msg;
 
 class GameController extends Controller
 {
@@ -34,6 +35,19 @@ class GameController extends Controller
        
         broadcast(new Next($gameId->id));
     }
+
+    public function msg(StoreGameRequest $gameMsg)
+    {
+
+        $msg = [
+            'gameId' => $gameMsg->gameId,
+            'msg' => $gameMsg->msg,
+            'user' => $gameMsg->user,
+
+        ];
+        broadcast(new Msg($msg));
+    }
+
 
     /**
      * Show the form for creating a new resource.

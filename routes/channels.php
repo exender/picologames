@@ -26,3 +26,6 @@ Broadcast::channel('next.{gameId}', function ($gameId) {
     return $gameId;
 });
 
+Broadcast::channel('msg.{gameId}', function ($gameId) {
+    return $gameId;
+});

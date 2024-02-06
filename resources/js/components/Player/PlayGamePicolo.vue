@@ -43,14 +43,16 @@
 			:style="`width: ${(i / picolos.length) * 100}%`"
 			class="progression-bar"
 		></div>
+		<chat :players="players" :user="user" :gameId="gameId" />
 	</div>
 </template>
 
 <script>
 import { authenticatedFetch } from "../../utils"
+import Chat from './Chat.vue'
 import PlayerCard from './PlayerCard.vue'
 export default {
-	components: { PlayerCard },
+	components: { PlayerCard, Chat },
 
 	data() {
 		return {
@@ -58,7 +60,8 @@ export default {
 			i: 0,
 			user: null,
 			players: [],
-			isEnded: false
+			isEnded: false,
+			gameId: null
 		}
 	},
 
@@ -143,6 +146,7 @@ export default {
 
 	created() {
 		this.getUser()
+		this.gameId = this.$attrs.gameId
 	},
 	mounted() {
 

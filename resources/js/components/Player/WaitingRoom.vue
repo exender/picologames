@@ -1,7 +1,10 @@
 <template>
 	<section class="waiting-room-container">
 		<div class="left-container-waiting-room">
-			<router-link class="link-dashboard-wainting-room" :to="{ name: 'Dashboard' }">
+			<router-link
+				class="link-dashboard-wainting-room"
+				:to="{ name: 'Dashboard' }"
+			>
 				<div class="waiting-room-menu">
 					<img
 						src="/img/arrow-left.png"
@@ -12,7 +15,7 @@
 				</div>
 			</router-link>
 			<div class="container-beer-players">
-				<div v-if="players.length == 1" class="wait-players"> 
+				<div v-if="players.length == 1" class="wait-players">
 					En attente de joueurs supplémentaires ...
 					<div class="animation-loader"></div>
 				</div>
@@ -30,23 +33,23 @@
 				class="container-parametre-parties"
 			>
 				<div>
-					<input class="input-code"
+					<input
+						class="input-code"
 						v-on:focus="$event.target.select()"
 						ref="myinput"
 						readonly
 						:value="share"
 						@click="shareCopy"
 					/>
-					<button class="btn-code" @click="shareCopy"> Copy </button>
+					<button class="btn-code" @click="shareCopy">Copy</button>
 				</div>
 			</div>
-							<div class="footer-piloco">
-						<p>
-							Piloco.fr <br> 
-							Made with &#9829; - v1.0 
-						</p>
-					
-				</div>
+			<div class="footer-piloco">
+				<p>
+					Piloco.fr <br />
+					Made with &#9829; - v1.0
+				</p>
+			</div>
 		</div>
 		<div class="right-container-waiting-room">
 			<div>
@@ -62,7 +65,10 @@
 					<div class="txt-game-mode">{{ mode.name }}</div>
 				</div>
 
-				<router-link class="rootlink-modifier" :to="{ name: 'PlayGameMode' }">
+				<router-link
+					class="rootlink-modifier"
+					:to="{ name: 'PlayGameMode' }"
+				>
 					<div class="container-modifier-mode">
 						<img
 							class="modifier-mode"
@@ -76,7 +82,7 @@
 			<div v-if="players.length !== 0">
 				<button
 					class="start-game"
-					v-if="user == players[0].id"
+					v-if="user == players[0].id && players.length > 1"
 					@click="redirect"
 				>
 					Lancer la partie
@@ -128,10 +134,18 @@ export default {
 
 		redirect: function () {
 
+			const data = {
+				id: this.$attrs.gameId
+			}
+
 			authenticatedFetch(
 				"POST",
-				`/api/redirect`
+				`/api/redirect`,
+				data
 			)
+				.then((res) => {
+					console.log(res)
+				})
 
 
 		},
@@ -187,12 +201,13 @@ export default {
 	mounted() {
 		window.Echo.channel('channel')
 			.listen('Test', (e) => {
-				console.log(e)
+				// console.log(e)
 				this.getGame()
 			})
 
-		window.Echo.channel('redirect')
+		window.Echo.private(`redirect.${this.$attrs.gameId}`)
 			.listen('Redirect', (e) => {
+				console.log(e)
 				this.$router.push({
 					name: 'PlayGamePicolo',
 					params: {

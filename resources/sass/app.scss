@@ -7,11 +7,11 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-.text-align-center{
+.text-align-center {
     text-align: center;
 }
 
-.homepage{
+.homepage {
     width: 100%;
     min-height: 100vh;
     display: flex;
@@ -21,15 +21,15 @@
 }
 
 
-.auth-container{
-    position: relative;
+.auth-container {
     width: 100%;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    form{
+
+    form {
         display: flex;
         width: 70%;
         max-width: 500px;
@@ -38,34 +38,35 @@
     }
 }
 
-.admin-container{
+.admin-container {
     width: 100%;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
 
-    .table{
+    .table {
         width: 70%;
     }
-    .admin-form{
+
+    .admin-form {
         width: 30%;
     }
 
 }
 
-.waiting-room-container{
+.waiting-room-container {
     display: flex;
     width: 100%;
     height: 100vh;
 
-    .left-container-waiting-room{
+    .left-container-waiting-room {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         width: 60%;
 
-        .link-dashboard-wainting-room{
+        .link-dashboard-wainting-room {
             text-decoration: none;
             color: $black;
 
@@ -75,7 +76,8 @@
             }
         }
     }
-    .right-container-waiting-room{
+
+    .right-container-waiting-room {
         display: flex;
         flex-direction: column;
         justify-content: space-around;
@@ -84,13 +86,13 @@
         background-color: $blue;
         color: $white;
 
-        .container-mode-selection{
+        .container-mode-selection {
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        .container-modifier-mode{
+        .container-modifier-mode {
             cursor: pointer;
             height: fit-content;
             display: flex;
@@ -102,19 +104,19 @@
             border-radius: 5px;
             transition: 0.2s;
 
-            &:hover{
+            &:hover {
                 transform: scale(1.1);
                 transition: 0.2s;
             }
 
-            .modifier-mode{
+            .modifier-mode {
                 width: 30px;
             }
         }
 
     }
 
-    .waiting-room-menu{
+    .waiting-room-menu {
         cursor: pointer;
         display: flex;
         align-items: center;
@@ -127,12 +129,12 @@
             transform: translateX(15px);
         }
 
-        .arrow-left{
+        .arrow-left {
             margin-right: 10px;
         }
     }
 
-    .start-game{
+    .start-game {
         background: $orange;
         border: 0px solid;
         border-radius: 10px;
@@ -140,7 +142,8 @@
         padding: 10px 20px;
         border-radius: 3px;
         transition: 0.2s;
-        &:hover {        
+
+        &:hover {
             transform: scale(1.05);
             transition: 0.2s;
         }
@@ -151,7 +154,7 @@
 
 // POP UP
 
-.pop-up-container{
+.pop-up-container {
     top: 0;
     left: 0;
     position: fixed;
@@ -160,9 +163,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(0,0,0,.2);
+    background-color: rgba(0, 0, 0, .2);
 
-    .fake-pop-up-container{
+    .fake-pop-up-container {
         cursor: pointer;
         position: absolute;
         width: 100%;
@@ -170,7 +173,7 @@
         background-color: #00000094;
     }
 
-    .pop-up{
+    .pop-up {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -179,10 +182,11 @@
         padding: 40px 30px;
         background-color: $white;
     }
-    .container-join-input{
+
+    .container-join-input {
         margin-top: 20px;
 
-        .btn-join{
+        .btn-join {
             border: 0px;
             border-radius: 3px;
             background-color: $orange;
@@ -199,11 +203,12 @@
             }
         }
 
-        .message-error{
+        .message-error {
             color: red;
         }
     }
-    .input-code-game{
+
+    .input-code-game {
         border-radius: 4px;
         padding: 5px 10px;
         margin-right: 10px;
@@ -211,7 +216,8 @@
         transition: 0.5s;
     }
 }
-.container-game{
+
+.container-game {
     cursor: pointer;
     position: relative;
     height: 100vh;
@@ -223,10 +229,10 @@
     color: $white;
     background-color: black;
 
-    .link-dashboard{
+    .link-dashboard {
         color: $orange;
 
-        .btn-link-dashboard{
+        .btn-link-dashboard {
             font-size: 1rem;
             border: 2px solid $orange;
             border-radius: 3px;
@@ -235,14 +241,14 @@
             transition: 0.2s;
             padding: 5px 10px;
 
-            &:hover{
+            &:hover {
                 background-color: $orange;
                 transition: 0.2s;
             }
         }
     }
 
-    .menu{
+    .menu {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -256,21 +262,21 @@
             transform: translateX(10px);
         }
 
-        .arrow-left{
+        .arrow-left {
             margin-right: 10px;
         }
     }
 
-    .question-game{
+    .question-game {
         text-align: center;
         font-size: 2rem;
 
-        .color-winner{
+        .color-winner {
             color: $orange;
         }
     }
 
-    .container-players{
+    .container-players {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -281,30 +287,40 @@
         color: white;
     }
 
-    .player-name{
+    .player-name {
         margin-left: 5px;
+    }
+
+    .progression-bar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        height: 4px;
+        background-color: $yellow;
+        transition: .4s ease;
     }
 }
 
-.container-parametre-parties{
+.container-parametre-parties {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-.input-code{
+.input-code {
     border: 3px solid $orange;
     border-radius: 5px 0px 0px 5px;
 }
-.btn-code{
+
+.btn-code {
     background-color: $orange;
     color: $white;
     border: 3px solid $orange;
     border-radius: 0px 5px 5px 0px;
 }
 
-.container-beer-players{
+.container-beer-players {
     height: 75vh;
     display: flex;
     justify-content: center;
@@ -312,19 +328,19 @@
     flex-wrap: wrap;
     align-items: center;
 
-    .wait-players{
+    .wait-players {
         text-align: center;
         font-size: 1.2rem;
     }
 }
 
-.else-player-cards{
+.else-player-cards {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
 
-.container-beer{
+.container-beer {
     width: 200px;
     height: 200px;
     background-size: contain;
@@ -334,7 +350,7 @@
     background-repeat: no-repeat;
 }
 
-.animation-loader{
+.animation-loader {
     margin-left: auto;
     margin-right: auto;
     margin-top: 20px;
@@ -346,21 +362,22 @@
 }
 
 @keyframes slidein {
-    from { 
+    from {
         transform: rotate(0deg);
     }
-    to   { 
+
+    to {
         transform: rotate(360deg);
     }
 }
 
 
-.footer-piloco p{
+.footer-piloco p {
     margin-bottom: 0px;
     text-align: center;
 }
 
-.button-game-mode-waiting-room{
+.button-game-mode-waiting-room {
     min-height: 150px;
     border-radius: 5px;
     display: flex;
@@ -374,16 +391,17 @@
     transition: 0.2s;
 }
 
-.rootlink-modifier{
+.rootlink-modifier {
     color: white;
     text-decoration: none;
-    &:hover{
+
+    &:hover {
         color: white;
         text-decoration: none;
     }
 }
 
-.link-to-join-game{
+.link-to-join-game {
     color: $white;
     text-decoration: none;
 
@@ -393,7 +411,7 @@
     }
 }
 
-.name-questions{
+.name-questions {
     text-align: center;
 
     button {
@@ -403,7 +421,8 @@
         text-decoration: underline;
     }
 }
-.logout-btn{
+
+.logout-btn {
     width: fit-content;
     padding: 5px 10px;
     margin-left: auto;
@@ -421,40 +440,33 @@
     }
 }
 
-.title-proposer-question{
+.title-proposer-question {
     text-align: center;
 }
 
-.name-player{
+.name-player {
     color: $white;
     font-weight: bold;
 }
 
-.pop-up-add-question{
+.pop-up-add-question {
     min-width: 200px;
     width: 80%;
     max-width: 500px;
-    .add-questions{
+
+    .add-questions {
         width: 100%;
     }
 }
 
-.envoyer-question{
+.envoyer-question {
     display: flex;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 1rem;
 }
 
-.name-email{
-    display:flex;
-    justify-content: space-between;
-
-    .form-group {
-        width: calc(50% - 10px)
-    }
-}
-
-.password-password-confirm{
+.name-email {
     display: flex;
     justify-content: space-between;
 
@@ -463,7 +475,16 @@
     }
 }
 
-.btn-connexion-inscription{
+.password-password-confirm {
+    display: flex;
+    justify-content: space-between;
+
+    .form-group {
+        width: calc(50% - 10px)
+    }
+}
+
+.btn-connexion-inscription {
     background-color: $blue;
     color: white;
     border: 0;
@@ -471,7 +492,7 @@
     height: 30px;
 }
 
-.error-messages{
+.error-messages {
     text-align: center;
     padding: 2px;
     border: 3px solid $orange;

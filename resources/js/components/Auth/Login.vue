@@ -1,7 +1,10 @@
 <template>
 	<section class="auth-container">
-		<h1>Login</h1>
+		<h1>Connexion</h1>
 		<form @submit.prevent="loginUser">
+			<span v-if="this.form.loginExist" class="error-messages">
+				Nous n'avons pas trouvé de compte, vérifier votre saisie.
+			</span>
 			<div class="form-group">
 				<p v-for="error in errors" :key="error">
 					{{ error }}
@@ -14,6 +17,7 @@
 					id="email"
 					placeholder="Enter email"
 					v-model="form.email"
+					required
 				/>
 			</div>
 			<div class="form-group">
@@ -25,14 +29,24 @@
 					id="exampleInputPassword1"
 					placeholder="Password"
 					v-model="form.password"
+					required
 				/>
 			</div>
 
-			<input type="submit" value="Submit" class="btn btn-primary" />
-			<router-link :to="{ name: 'Register' }">S'inscrire</router-link>
+			<input
+				type="submit"
+				value="Se connecter"
+				class="btn-connexion-inscription"
+			/>
+			<div class="mt-1">
+				Pas de compte ?
+				<router-link :to="{ name: 'Register' }">S'inscrire</router-link>
+			</div>
 		</form>
 	</section>
 </template>
+
+
 
 <script>
 export default {
@@ -40,7 +54,8 @@ export default {
 		return {
 			form: {
 				email: '',
-				password: ''
+				password: '',
+				loginExist: false
 			},
 			errors: []
 		}
@@ -50,9 +65,12 @@ export default {
 			await axios.get('/sanctum/csrf-cookie').then(response => {
 				axios.post('/api/login', this.form)
 					.then((response) => {
+						localStorage.name = response.data[0].name
 						localStorage.token = response.data[2]
 						this.$router.push({ name: 'Dashboard' })
 					}).catch((error) => {
+						this.form.loginExist = true
+						// console.log(this.form.loginExist)
 						this.errors = error.response.data.errors
 					})
 			})

@@ -1,54 +1,73 @@
 <template>
 	<section class="auth-container">
-		<form @submit.prevent="saveForm">
-			<h1>Register</h1>
-			<div class="form-group">
-				<label for="exampleInputEmail1">Name</label>
-				<input
-					type="text"
-					name="name"
-					class="form-control"
-					id="name"
-					placeholder="Enter name"
-					v-model="form.name"
-				/>
+		<h1>Rejoindre la team Piloco !</h1>
+		<form @submit.prevent="saveForm" class="mt-3">
+			<span v-if="this.form.mdpCorrespondPas" class="error-messages">
+				Tu es déja bourré ? Le mot de passe ne correspond pas...
+			</span>
+			{{ this.mdpCorrespondPas }}
+			<div class="name-email">
+				<div class="form-group">
+					<label for="exampleInputEmail1">Nom</label>
+					<input
+						type="text"
+						name="name"
+						class="form-control"
+						id="name"
+						placeholder="Votre nom"
+						v-model="form.name"
+						required
+					/>
+				</div>
+				<div class="form-group">
+					<label for="exampleInputEmail1">Email</label>
+					<input
+						type="email"
+						name="email"
+						class="form-control"
+						id="email"
+						placeholder="Adresse email"
+						v-model="form.email"
+						required
+					/>
+				</div>
 			</div>
-			<div class="form-group">
-				<label for="exampleInputEmail1">Email address</label>
-				<input
-					type="email"
-					name="email"
-					class="form-control"
-					id="email"
-					placeholder="Enter email"
-					v-model="form.email"
-				/>
-			</div>
-			<div class="form-group">
-				<label for="exampleInputPassword1">Password</label>
-				<input
-					type="password"
-					name="password"
-					class="form-control"
-					id="exampleInputPassword1"
-					placeholder="Password"
-					v-model="form.password"
-				/>
-			</div>
-			<div class="form-group">
-				<label for="password_confirmation">Confirm Password</label>
-				<input
-					type="password"
-					name="password_confirmation"
-					class="form-control"
-					id="password_confirmation"
-					placeholder="Password"
-					v-model="form.password_confirmation"
-				/>
+			<div class="password-password-confirm">
+				<div class="form-group">
+					<label for="exampleInputPassword1">Mot de passe</label>
+					<input
+						type="password"
+						name="password"
+						class="form-control"
+						id="exampleInputPassword1"
+						placeholder="Mot de passe"
+						minlength="8"
+						v-model="form.password"
+						required
+					/>
+				</div>
+				<div class="form-group">
+					<label for="password_confirmation"
+						>Confirmer le mot de apsse</label
+					>
+					<input
+						type="password"
+						name="password_confirmation"
+						class="form-control"
+						id="password_confirmation"
+						placeholder="Confirmation mot de passe"
+						minlength="8"
+						v-model="form.password_confirmation"
+						required
+					/>
+				</div>
 			</div>
 
-			<button class="btn btn-primary">Submit</button>
-			<router-link :to="{ name: 'Login' }">Se connecter</router-link>
+			<button class="btn-connexion-inscription">S'inscrire</button>
+			<div class="mt-1">
+				Déja un compte ?
+				<router-link :to="{ name: 'Login' }">Se connecter</router-link>
+			</div>
 		</form>
 	</section>
 </template>
@@ -61,20 +80,28 @@ export default {
 				name: '',
 				email: '',
 				password: '',
-				password_confirmation: ''
+				password_confirmation: '',
+				mdpCorrespondPas: false
 			},
-			errors: []
+			errors: [],
 		}
 	},
 	methods: {
 		saveForm() {
-			axios.post('/api/register', this.form)
-				.then((res) => {
-					console.log(res)
-					this.$router.push({ name: 'Dashboard' })
-				}).catch((error) => {
-					console.error(error.response.data.errors)
-				})
+			if (this.form.password === this.form.password_confirmation) {
+				axios.post('/api/register', this.form)
+					.then((res) => {
+						// console.log(res)
+						localStorage.name = res.data[0].name
+						localStorage.token = res.data[2]
+						this.$router.push({ name: 'Dashboard' })
+					}).catch((error) => {
+						console.error(error.response.data.errors)
+					})
+			}
+			else {
+				this.form.mdpCorrespondPas = true
+			}
 		}
 	}
 }

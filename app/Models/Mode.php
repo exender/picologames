@@ -11,5 +11,6 @@ class Mode extends Model
 
     protected $fillable = [
         'name',
+        'image'
     ];
 }

@@ -23,9 +23,10 @@ class GameController extends Controller
     }
 
 
-    public function redirect()
+    public function redirect(StoreGameRequest $gameId)
     {
-        broadcast(new Redirect());  
+        // dd($gameId->id);
+        broadcast(new Redirect($gameId->id));  
     }
 
     public function next()

@@ -1,5 +1,17 @@
 <template>
 	<div class="container-game">
+		<div class="game-tchat">
+			<img
+				@click="
+					popUp = !popUp;
+					notif = false;
+				"
+				class="game-tchat-style"
+				src="/img/message.png"
+				alt=""
+			/>
+			<span v-if="notif">!</span>
+		</div>
 		<router-link class="link-dashboard" :to="{ name: 'Dashboard' }">
 			<div class="menu">
 				<img
@@ -14,8 +26,9 @@
 
 		<p class="question-game" v-if="picolos.length !== 0 && !isEnded">
 			<span>{{ players[i % players.length].name }}</span>
-			{{ picolos[i].text }}
+			{{ picolos[i].text }} <br />
 			<button
+				class="question-game-btn"
 				v-if="players[i % players.length].id == user"
 				@click="next(i)"
 			>
@@ -43,16 +56,24 @@
 			:style="`width: ${(i / picolos.length) * 100}%`"
 			class="progression-bar"
 		></div>
-		<chat :players="players" :user="user" :gameId="gameId" />
+		<pop-up-chat
+			@newMessage="notif = true"
+			@closePopUp="popUp = !popUp"
+			v-if="popUp"
+			:players="players"
+			:user="user"
+			:gameId="gameId"
+			:messages="messages"
+		/>
 	</div>
 </template>
 
 <script>
 import { authenticatedFetch } from "../../utils"
-import Chat from './Chat.vue'
+import PopUpChat from '../PopUp/PopUpChat.vue'
 import PlayerCard from './PlayerCard.vue'
 export default {
-	components: { PlayerCard, Chat },
+	components: { PlayerCard, PopUpChat },
 
 	data() {
 		return {
@@ -61,7 +82,10 @@ export default {
 			user: null,
 			players: [],
 			isEnded: false,
-			gameId: null
+			gameId: null,
+			popUp: false,
+			notif: false,
+			messages: []
 		}
 	},
 
@@ -163,6 +187,19 @@ export default {
 					this.i += 1
 					this.isEnded = true
 				}
+			})
+
+		window.Echo.private(`msg.${this.gameId}`)
+			.listen('Msg', (e) => {
+				this.messages.push(e)
+				if (this.messages[this.messages.length - 1][0] !== this.user && !this.popUp) {
+					this.notif = true
+				}
+
+				if (this.messages.length >= 10) {
+					this.messages.shift()
+				}
+
 			})
 
 

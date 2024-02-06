@@ -1,11 +1,11 @@
 <template>
 	<div class="chat-container">
 		<div v-for="message in messages" :key="message">
-			<p>{{ getUser(message[0]) }}</p>
-			<p>{{ message[1] }}</p>
+			<span class="user-name-chat">{{ getUser(message[0]) }}</span>
+			<p class="message-chat">{{ message[1] }}</p>
 		</div>
 		<form @submit.prevent="submit">
-			<input type="text" v-model="msg" />
+			<input class="message-sent" type="text" placeholder="message" v-model="msg" />
 			<input type="submit" value="Envoyer" />
 		</form>
 	</div>

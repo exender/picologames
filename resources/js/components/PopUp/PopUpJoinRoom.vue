@@ -5,13 +5,14 @@
 			class="fake-pop-up-container"
 		></div>
 		<div class="pop-up">
-			<h1> Rejoindre une partie </h1>
+			<h1>Rejoindre une partie</h1>
 			<div class="container-join-input">
 				<div>
 					<input
 						v-model="roomName"
 						type="text"
-						placeholder="Code de la partie" class="input-code-game"
+						placeholder="Code de la partie"
+						class="input-code-game"
 					/>
 					<button @click="join" class="btn-join">Rejoindre</button>
 				</div>
@@ -32,10 +33,10 @@ export default {
 	},
 	methods: {
 		join: function () {
-			if(this.roomName !== '') {
-				this.$router.push({ path: `waiting-room/${this.roomName}` })
+			if (this.roomName !== '') {
+				this.$router.push({ path: `/waiting-room/${this.roomName}` })
 			}
-			else{
+			else {
 				this.error = "Insérer un nom de code valide !"
 			}
 		}

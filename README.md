@@ -23,7 +23,6 @@ Le principe du jeu est de faire ou répondre à une question ou une action propo
 
 ## Contenu CRUD BDD
 
-// Difficulté: 3
 L'Api est en Laravel, elle permet à un utlisateur de:
 
 - créer un utilisateur
@@ -83,24 +82,22 @@ Add
 
 - Faire visio
 
-With add: 52
-Without add 34 + 6 BDD ORM: 40
-
 
 ## Installation pour les devs :
 (Installer PHP et Composer au préalable)
 
-cp .env.example .env
-composer install
-php artisan key:generate
-php artisan migrate:fresh --seed
-yarn install
+- cp .env.example .env
+- composer install
+- php artisan key:generate
+- php artisan migrate:fresh --seed
+- yarn install
 
 ## Lauch server
-php artisan serve --host=localhost
+- php artisan serve --host=localhost
 
 ## Lauch front-end
-yarn run hot
+- export NODE_OPTIONS=--openssl-legacy-provider
+- yarn run hot
 
 ## Start socket
 php artisan websockets:serve

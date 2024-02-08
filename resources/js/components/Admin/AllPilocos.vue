@@ -1,22 +1,32 @@
 <template>
 	<h1>All pilocos</h1>
+	<input type="text" placeholder="Chercher par text" v-model="filterText" />
+	<select v-model="selectedMode" id="">
+		<option selected :value="null">--------</option>
+		<option v-for="mode in modes" :key="mode" :value="mode.id">
+			{{ mode.name }}
+		</option>
+	</select>
+	<input
+		type="text"
+		placeholder="Chercher par gorgée"
+		v-model="selectedSip"
+	/>
 	<table class="table">
 		<tr>
 			<th>id</th>
 			<th>mode</th>
 			<th>Text</th>
 			<th>Gorgée</th>
-			<th>Publié</th>
 			<th>Modifier</th>
 			<th>Supprimer</th>
 		</tr>
 
-		<tr v-for="piloco in pilocos" :key="piloco">
+		<tr v-for="piloco in filteredList" :key="piloco">
 			<td>{{ piloco.id }}</td>
 			<td>{{ getMode(piloco.mode) }}</td>
 			<td>{{ piloco.text }}</td>
 			<td>{{ piloco.sip }}</td>
-			<td>{{ piloco.published }}</td>
 			<td>
 				<router-link
 					class="btn btn-warning"
@@ -40,7 +50,10 @@ export default {
 	data() {
 		return {
 			pilocos: [],
-			modes: []
+			modes: [],
+			filterText: '',
+			selectedMode: null,
+			selectedSip: ''
 		}
 	},
 	methods: {
@@ -67,6 +80,21 @@ export default {
 			if (mode) {
 				return mode.name
 			}
+		}
+	},
+
+	computed: {
+		filteredList() {
+			let pilocos = this.pilocos
+			if (this.selectedMode !== null) {
+				pilocos = pilocos.filter(e => e.mode == this.selectedMode)
+			}
+			if (this.selectedSip !== '') {
+				pilocos = pilocos.filter(e => e.sip == this.selectedSip)
+			}
+			return pilocos.filter(piloco => {
+				return piloco.text.toLowerCase().includes(this.filterText.toLowerCase())
+			})
 		}
 	},
 	created() {

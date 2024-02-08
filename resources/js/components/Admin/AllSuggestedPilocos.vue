@@ -1,6 +1,8 @@
 <template>
-	<h1>All suggested pilocos</h1>
-	<table class="table">
+	<h1 v-if="pilocos.length !== 0">All suggested pilocos</h1>
+
+	<h2 v-else>Aucun Piloco suggéré</h2>
+	<table v-if="pilocos.length !== 0" class="table">
 		<tr>
 			<th>id</th>
 			<th>mode</th>

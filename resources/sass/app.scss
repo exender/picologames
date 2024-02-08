@@ -182,6 +182,10 @@
         position: relative;
         padding: 40px 30px;
         background-color: $white;
+
+        &.pop-up-chat {
+            width: 40%;
+        }
     }
 
     .container-join-input {
@@ -324,14 +328,16 @@
     }
 
     .container-players {
+        background-color: $orange;
         display: flex;
         justify-content: center;
         align-items: center;
         width: inherit;
         display: flex;
-        position: absolute;
+        position: fixed;
         bottom: 0;
         color: white;
+        max-height: 50px;
     }
 
     .player-name {
@@ -343,7 +349,7 @@
         bottom: 0;
         left: 0;
         height: 4px;
-        background-color: $yellow;
+        background-color: $white;
         transition: .4s ease;
     }
 }
@@ -462,12 +468,39 @@
     text-align: center;
 
     button {
-        background-color: $blue;
-        border: 0px;
-        color: $white;
-        text-decoration: underline;
+        // background-color: $blue;
+        // border: 0px;
+        // color: $white;
+        // text-decoration: underline;
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+        color: #ffffff;
+        /* Couleur du texte */
+        background-color: rgba(100, 100, 255, 0.5);
+        /* Couleur de fond avec transparence */
+
+        /* Effet de verre */
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        /* Bordure transparente */
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        /* Ombre douce */
+
+        /* Transition pour un effet fluide */
+        transition: background-color 0.3s ease;
+    }
+
+    .button:hover {
+        background-color: rgba(100, 100, 255, 0.7);
+        /* Changement de couleur au survol */
     }
 }
+
 
 .logout-btn {
     width: fit-content;
@@ -539,35 +572,61 @@
     height: 30px;
 }
 
-.error-messages {
-    text-align: center;
-    padding: 2px;
-    border: 3px solid $orange;
-    margin: 15px 0px;
-}
 
 .chat-container {
+    form {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
+    .msg {
+        display: flex;
+        flex-direction: column;
+        max-width: 100%;
 
+        &.own-message {
+            align-items: flex-end;
+
+            .message-chat {
+                background-color: grey;
+            }
+        }
+    }
 
     .message-sent {
-        border: 2px solid white;
-        background-color: black;
+        border: 2px solid $yellow;
+        background-color: $white;
         border-radius: 3px;
-        color: white;
+        color: black;
         margin-right: 5px;
 
         &::placeholder {
-            color: white;
+            color: black;
+        }
+    }
+
+    .message-submit {
+        color: white;
+        border: 2px solid #F3B61F;
+        border-radius: 3px;
+        background-color: #F3B61F;
+        transition: 0.2s;
+
+        &:hover {
+            background-color: white;
+            color: black;
+            transition: 0.2s;
         }
     }
 
     .user-name-chat {
+        color: black;
         font-size: 0.5rem;
     }
 
     .message-chat {
-        background-color: red;
+        background-color: #F3B61F;
         border-radius: 5px;
         width: fit-content;
         padding: 5px 10px;

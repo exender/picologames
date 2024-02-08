@@ -26,7 +26,7 @@
 
 		<p class="question-game" v-if="picolos.length !== 0 && !isEnded">
 			<span>{{ players[i % players.length].name }}</span>
-			{{ picolos[i].text }} <br />
+			{{ picolos[i].sip }} {{ picolos[i].text }} <br />
 			<button
 				class="question-game-btn"
 				v-if="players[i % players.length].id == user"
@@ -37,7 +37,7 @@
 		</p>
 		<div class="question-game" v-if="isEnded">
 			<p class="color-winner">
-				La partie est terminé ! <br />
+				La partie est terminée ! <br />
 				Le gagnant est le plus arraché !
 			</p>
 			<router-link class="link-dashboard" :to="{ name: 'Dashboard' }">
@@ -46,7 +46,6 @@
 		</div>
 
 		<div class="container-players">
-			Joueurs :
 			<span v-for="player in players" :key="player">
 				<player-card class="player-name" :playerName="player.name" />
 			</span>

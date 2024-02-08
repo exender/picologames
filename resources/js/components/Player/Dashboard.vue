@@ -2,11 +2,7 @@
 	<div>
 		<div class="dashboard">
 			<div class="piloco-presentation">
-				<img
-					class="logo-size"
-					src="/img/logo.png"
-					alt="logo de piloco"
-				/>
+				<img class="logo-size" src="/img/logo.png" alt="logo de piloco" />
 				<div class="presentation-texte">
 					Bienvenue
 					<span v-if="id" class="name-player"> {{ name }} </span> !
@@ -16,81 +12,48 @@
 				</div>
 
 				<p v-if="name" class="name-questions">
-					<button
-						v-if="id"
-						@click="isPopUpQuestion = !isPopUpQuestion"
-					>
-						Proposer une question ?
+					<button v-if="id" @click="isPopUpQuestion = !isPopUpQuestion">
+						Proposer une question
 					</button>
 				</p>
 
 				<button v-if="id" class="logout-btn" @click.prevent="logout">
-					Logout
+					Se déconnecter
 				</button>
 			</div>
 			<div class="game-create-start">
 				<div class="h-50 position-relative flex-center-h-v">
-					<img
-						src="/img/creation-partie.png"
-						alt="Créer la partie"
-						class="img-creation-partie"
-					/>
-					<router-link
-						v-if="id"
-						class="link-to-join-game"
-						:to="{ name: 'PlayGameMode' }"
-					>
+					<img src="/img/creation-partie.png" alt="Créer la partie" class="img-creation-partie" />
+					<router-link v-if="id" class="link-to-join-game" :to="{ name: 'PlayGameMode' }">
 						<div class="btn-partie btn-rejoindre-partie">
 							Créer la partie
 						</div>
 					</router-link>
-					<router-link
-						v-else
-						class="link-to-join-game"
-						:to="{ name: 'Login' }"
-					>
+					<router-link v-else class="link-to-join-game" :to="{ name: 'Login' }">
 						<div class="btn-partie btn-rejoindre-partie">
 							Se connecter
 						</div>
 					</router-link>
 				</div>
 				<div class="h-50 position-relative flex-center-h-v">
-					<div
-						v-if="id"
-						@click="
-							isPopUpJoinRoomVisible = !isPopUpJoinRoomVisible
-						"
-						class="btn-partie btn-creer-partie"
-					>
+					<div v-if="id" @click="
+						isPopUpJoinRoomVisible = !isPopUpJoinRoomVisible
+						" class="btn-partie btn-creer-partie">
 						Rejoindre une partie
 					</div>
-					<router-link
-						v-else
-						class="link-to-join-game"
-						:to="{ name: 'Register' }"
-					>
+					<router-link v-else class="link-to-join-game" :to="{ name: 'Register' }">
 						<div class="btn-partie btn-creer-partie">
 							Creer un compte
 						</div>
 					</router-link>
-					<img
-						src="/img/rejoindre-partie.png"
-						alt="Rejoindre une partie"
-						class="img-rejoindre-partie"
-					/>
+					<img src="/img/rejoindre-partie.png" alt="Rejoindre une partie" class="img-rejoindre-partie" />
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<pop-up-join-room
-		@closePopUp="isPopUpJoinRoomVisible = !isPopUpJoinRoomVisible"
-		v-if="isPopUpJoinRoomVisible"
-	/>
-	<pop-up-question
-		@closePopUp="isPopUpQuestion = !isPopUpQuestion"
-		v-if="isPopUpQuestion"
-	/>
+	<pop-up-join-room @closePopUp="isPopUpJoinRoomVisible = !isPopUpJoinRoomVisible" v-if="isPopUpJoinRoomVisible" />
+	<pop-up-question @closePopUp="isPopUpQuestion = !isPopUpQuestion" v-if="isPopUpQuestion" />
 </template>
 
 <script>
@@ -111,6 +74,7 @@ export default {
 		logout() {
 			axios.post('/api/logout').then(() => {
 				this.id = null
+				localStorage.token = ''
 			})
 		},
 		getId: function () {
@@ -132,38 +96,46 @@ export default {
 	.flex-center-h-v {
 		flex-direction: column;
 	}
+
 	.img-creation-partie {
 		width: 150px;
 		position: initial !important;
 	}
+
 	.img-rejoindre-partie {
 		width: 150px;
 		position: initial !important;
 	}
+
 	.btn-rejoindre-partie {
 		font-size: 1rem !important;
 	}
+
 	.btn-creer-partie {
 		font-size: 1rem !important;
 	}
 
 	.dashboard {
 		flex-direction: column;
+
 		.game-create-start {
 			width: 100% !important;
 		}
 	}
+
 	.piloco-presentation {
 		flex-direction: row !important;
 		justify-content: space-around !important;
 		width: 100% !important;
 		padding: 10px;
 	}
+
 	.logo-size {
 		width: 150px !important;
 		margin-left: 0 !important;
 		margin-right: 0 !important;
 	}
+
 	.presentation-texte {
 		display: flex;
 		justify-content: center;
@@ -173,6 +145,7 @@ export default {
 		margin-top: 0 !important;
 		font-size: 1rem !important;
 	}
+
 	.game-create-start {
 		height: inherit;
 	}
@@ -192,6 +165,7 @@ export default {
 		color: $white;
 		font-size: 2rem;
 		@include center-v-h;
+		border-radius: 10px;
 	}
 
 	.btn-creer-partie {
@@ -200,7 +174,9 @@ export default {
 		color: $white;
 		font-size: 2rem;
 		@include center-v-h;
+		border-radius: 10px;
 	}
+
 	.piloco-presentation {
 		background-color: $blue;
 		width: 40%;
@@ -223,6 +199,7 @@ export default {
 			margin-right: 20px;
 		}
 	}
+
 	.game-create-start {
 		padding: 50px;
 		background-color: $white;

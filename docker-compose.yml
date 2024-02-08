@@ -1,0 +1,48 @@
+# docker-compose.yml
+
+version: '3'
+
+services:
+  swagger:
+    image: swaggerapi/swagger-ui
+    container_name: swagger-ui
+    ports:
+      - "8080:8080"  # Port sur lequel Swagger UI sera accessible
+    environment:
+      - SWAGGER_JSON=/app/swagger.json  # Le chemin vers votre fichier swagger.json
+    volumes:
+      - ./app:/app  # Montez le dossier app pour inclure le fichier swagger.json
+
+  grafana:
+    image: grafana/grafana-enterprise
+    container_name: grafana
+    restart: unless-stopped
+    ports:
+      - '3000:3000'
+  
+  laravel:
+    build:
+      context: .
+    container_name: laravel
+    ports:
+      - "8000:8000"  # Port sur lequel Laravel sera accessible
+    environment:
+      - APP_ENV=local
+      - DB_CONNECTION=mysql
+      - DB_HOST=piloco
+      - DB_PORT=3306
+      - DB_DATABASE=laravel
+      - DB_USERNAME=root
+      - DB_PASSWORD=
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:latest
+    container_name: mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ""
+      MYSQL_DATABASE: laravel
+    ports:
+      - "3306:3306"  # Port sur lequel MySQL sera accessible

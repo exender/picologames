@@ -17,7 +17,7 @@ class PicoloController extends Controller
      */
     public function index()
     {
-        $picolos = Picolo::all();
+        $picolos = Picolo::orderBy('id')->get();
 
         return $picolos;
     }
@@ -65,6 +65,7 @@ class PicoloController extends Controller
             'mode' => 'required',
             'text' => 'required',
             'sip' => 'required',
+            'published' => 'required',
         ]);
         
 
@@ -78,7 +79,7 @@ class PicoloController extends Controller
      */
     public function show($id)
     {
-        $picolos = Picolo::where('mode', $id)->inRandomOrder()->limit(5)->get();
+        $picolos = Picolo::where([['mode', $id],['published', 1]])->inRandomOrder()->limit(5)->get();
         broadcast(new Play($picolos));
         return $picolos;
     }

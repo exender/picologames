@@ -1,0 +1,35 @@
+.form-control:invalid {
+    border: 1px solid #f00;
+    background-color: #ffe6e6;
+    color: #f00;
+}
+
+
+
+.error-messages {
+    display: block;
+    padding: 10px;
+    background-color: #ffcccc;
+    /* Couleur de fond pour indiquer l'erreur */
+    color: #cc0000;
+    /* Couleur du texte en cas d'erreur */
+    border: 1px solid #cc0000;
+    /* Bordure rouge pour indiquer l'erreur */
+    border-radius: 8px;
+    margin-top: 10px;
+    transition: opacity 0.3s ease;
+    /* Animation de fondu pour une apparence moderne */
+    opacity: 1;
+    /* Opacité par défaut */
+}
+
+.error-messages.hidden {
+    opacity: 0;
+    /* Opacité réduite pour cacher le message */
+    height: 0;
+    /* Hauteur réduite pour libérer l'espace */
+    padding: 0;
+    /* Aucun espace de remplissage lorsque caché */
+    overflow: hidden;
+    /* Cacher tout contenu débordant */
+}

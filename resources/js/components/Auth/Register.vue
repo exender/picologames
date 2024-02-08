@@ -1,4 +1,8 @@
 <template>
+	<div class="btn-annuler">
+		<button> <router-link :to="{ name: 'Dashboard' }"> annuler</router-link>
+		</button>
+	</div>
 	<section class="auth-container">
 		<h1>Rejoindre la team Piloco !</h1>
 		<form @submit.prevent="saveForm" class="mt-3">
@@ -9,57 +13,26 @@
 			<div class="name-email">
 				<div class="form-group">
 					<label for="exampleInputEmail1">Nom</label>
-					<input
-						type="text"
-						name="name"
-						class="form-control"
-						id="name"
-						placeholder="Votre nom"
-						v-model="form.name"
-						required
-					/>
+					<input type="text" name="name" class="form-control" id="name" placeholder="Votre nom"
+						v-model="form.name" required />
 				</div>
 				<div class="form-group">
 					<label for="exampleInputEmail1">Email</label>
-					<input
-						type="email"
-						name="email"
-						class="form-control"
-						id="email"
-						placeholder="Adresse email"
-						v-model="form.email"
-						required
-					/>
+					<input type="email" name="email" class="form-control" id="email" placeholder="Adresse email"
+						v-model="form.email" required />
 				</div>
 			</div>
 			<div class="password-password-confirm">
 				<div class="form-group">
 					<label for="exampleInputPassword1">Mot de passe</label>
-					<input
-						type="password"
-						name="password"
-						class="form-control"
-						id="exampleInputPassword1"
-						placeholder="Mot de passe"
-						minlength="8"
-						v-model="form.password"
-						required
-					/>
+					<input type="password" name="password" class="form-control" id="exampleInputPassword1"
+						placeholder="Mot de passe" minlength="8" v-model="form.password" required />
 				</div>
 				<div class="form-group">
-					<label for="password_confirmation"
-						>Confirmer le mot de apsse</label
-					>
-					<input
-						type="password"
-						name="password_confirmation"
-						class="form-control"
-						id="password_confirmation"
-						placeholder="Confirmation mot de passe"
-						minlength="8"
-						v-model="form.password_confirmation"
-						required
-					/>
+					<label for="password_confirmation">Confirmer le mot de apsse</label>
+					<input type="password" name="password_confirmation" class="form-control" id="password_confirmation"
+						placeholder="Confirmation mot de passe" minlength="8" v-model="form.password_confirmation"
+						required />
 				</div>
 			</div>
 
@@ -107,5 +80,4 @@ export default {
 }
 </script>
 
-<style>
-</style>
+<style></style>

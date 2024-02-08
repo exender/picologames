@@ -4,21 +4,31 @@
 			@click="this.$emit('closePopUp')"
 			class="fake-pop-up-container"
 		></div>
-		<div class="pop-up">
+		<div class="pop-up pop-up-chat">
 			<div class="chat-container">
-				<div
-					:class="message[0] == user ? 'own-message' : ''"
-					v-for="message in messages"
-					:key="message"
-				>
-					<span class="user-name-chat">{{
-						getUser(message[0])
-					}}</span>
-					<p class="message-chat">{{ message[1] }}</p>
+				<div v-for="message in messages" :key="message">
+					<div
+						class="msg"
+						:class="message[0] == user ? 'own-message' : ''"
+					>
+						<span class="user-name-chat">{{
+							getUser(message[0])
+						}}</span>
+						<p class="message-chat">{{ message[1] }}</p>
+					</div>
 				</div>
 				<form @submit.prevent="submit">
-					<input type="text" v-model="msg" />
-					<input type="submit" value="Envoyer" />
+					<input
+						class="message-sent"
+						type="text"
+						placeholder="message"
+						v-model="msg"
+					/>
+					<input
+						class="message-submit"
+						type="submit"
+						value="Envoyer"
+					/>
 				</form>
 			</div>
 		</div>
